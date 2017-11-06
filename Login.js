@@ -16,11 +16,15 @@ import {
     ListView,
     View
 } from 'react-native';
+import { StackNavigator } from 'react-navigation';
+import Loader from './Loader';
+import ProductList from './ProductList';
+import FetchBack from './utils/FetchBack';
 
+export default class Login extends Component {      
 
-export default class Login extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             email: '',
             password: '',
@@ -32,18 +36,23 @@ export default class Login extends Component {
             loginareaheight: 200,
             loginarealeft: 0,
             loginareatop: 0,
+            loading: false
         };
     }
 
-    login() {
+    login() {        
 
-        alert(this.state.email);
+        this.setState({ error: '', loading: true });
         console.log('your email is', this.state.email);
         console.log('your password is', this.state.password);
+        this.setState({ error: '', loading: false });
+        this.props.navigation.navigate('ProductList');
     }
 
-    unlogin() {
+    unlogin() {        
         alert(this.state.email);        
+
+        
     }
 
     register() {
@@ -76,7 +85,20 @@ export default class Login extends Component {
         }
     }
 
-    render() {
+    renderLoader() {
+        if (this.state.loading) {
+            return <Loader size="large" />;
+        } else {
+            return <Button style={styles.login_button} onPress={this.login.bind(this)} title='Login' />
+        }
+    }
+
+    static navigationOptions = {
+        title: 'Welcome',
+    };
+
+    render() {       
+       
         return (
             <View style={styles.login_container} onLayout={(event) => { this.layoutchanged(event) }}>
                 <View style={this.loginareaStyle()}>
@@ -106,7 +128,7 @@ export default class Login extends Component {
                     />  
                     <View style={styles.login_space}></View>
                     <View>                        
-                        <Button style={styles.login_button} onPress={this.login.bind(this)} title='Login' />
+                        {this.renderLoader()}
                     </View>    
                     <View style={styles.login_flex}></View>
                 </View>

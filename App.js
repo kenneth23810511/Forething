@@ -11,18 +11,29 @@ import {
   Text,
   View
 } from 'react-native';
+import { StackNavigator } from 'react-navigation';
 import Login from './Login'
+import Loader from './Loader';
+import ProductList from './ProductList';
 
-export default class App extends Component<{}> {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Login>
-        </Login>
-      </View>
-    );
-  }
+export const SimpleApp = StackNavigator({
+    Login: { screen: Login },
+    ProductList: { screen: ProductList },
+});
+
+export default class App extends Component {
+    state = { loggedIn: false };
+        
+
+    static navigationOptions = {
+        title: 'Welcome'
+    };
+
+    render() {
+        return <SimpleApp />;
+    }
 }
+
 
 const styles = StyleSheet.create({
   container: {

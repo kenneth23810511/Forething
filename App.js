@@ -15,10 +15,12 @@ import { StackNavigator } from 'react-navigation';
 import Login from './Login'
 import Loader from './Loader';
 import ProductList from './ProductList';
+import ProductView from './ProductView';
 
 export const SimpleApp = StackNavigator({
     Login: { screen: Login },
     ProductList: { screen: ProductList },
+    ProductView: { screen: ProductView },
 });
 
 export default class App extends Component {

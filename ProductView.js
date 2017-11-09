@@ -14,6 +14,7 @@ import {
   Button,
   View
 } from 'react-native';
+import Constansts from './utils/Constants.js';
 import Common from './utils/Common';
 import FetchBack from './utils/FetchBack';
 import RNFS from 'react-native-fs';
@@ -36,9 +37,16 @@ export default class ProductView extends Component {
                       internalContainertop: 0,
                       loading: false,
                     };
-        let params = {'start':'0',limit:'20','isNeedCategory': true, 'lastRefreshTime': '2016-09-25 09:45:12'};
+                let params = {'CurrentAllocation':'','CurrentUserId':'','CurrentSessionId':'','CurrentClientId':'','AssemblyName':'CoreBusiness','ClassType':'Product1','MethodName':'LoadProducts','CurrentSendParameter':''};
                 FetchBack.Post(this, params, function (target, set) {
+                    if(set.errorCode == Constansts.Success)
+                                        {
 
+                                          }
+                                          else
+                                          {
+                                            alert(set.errorCode+':'+ set.errorMessage);
+                                          }
                 });
       }
 
@@ -123,7 +131,15 @@ export default class ProductView extends Component {
                 this.setState({
                   avatarSource: source
                 });
-              }
+
+                 RNFS.readFile(response.path,'utf8')
+                      .then((result) => {
+                        console.log(result);
+                      })
+                      .catch((err) => {
+                        console.log(err.message);
+                      });
+                }
             });
         }
 

@@ -51,9 +51,9 @@ class FetchBack extends React.Component {
         })
        .then((response) => response.json())
        .then((responseJSON) => {
-            callback(target, responseJSON)
+            callback(target, responseJSON);
        })
-       .catch(error => console.warn("error"))
+       .catch(error => alert(error))
        .done();
     }
 }

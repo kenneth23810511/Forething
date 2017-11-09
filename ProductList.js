@@ -14,6 +14,7 @@ import {
   Image,
   View
 } from 'react-native';
+import Constansts from './utils/Constants.js';
 import Common from './utils/Common';
 import FetchBack from './utils/FetchBack';
 import RNFS from 'react-native-fs';
@@ -39,24 +40,31 @@ export default class ProductList extends Component {
                       y:20,
                       documentPath: RNFS.DocumentDirectoryPath+'/',
                     };
-        let params = {'start':'0',limit:'20','isNeedCategory': true, 'lastRefreshTime': '2016-09-25 09:45:12'};
+                let params = {'CurrentAllocation':'','CurrentUserId':'','CurrentSessionId':'','CurrentClientId':'','AssemblyName':'CoreBusiness','ClassType':'Product','MethodName':'LoadProducts','CurrentSendParameter':''};
                 FetchBack.Post(this, params, function (target, set) {
-                     let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+                    if(set.errorCode == Constansts.Success)
+                                        {
+                                         let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
-                    set.returnObj.forEach(p =>{
-                               var filename = p.Icon.replace(/^.*[\\\/]/, '');
-                               var localpath =  target.state.documentPath + filename;
-                                            RNFS.downloadFile({
-                                                fromUrl: p.Icon,
-                                                toFile: localpath,
-                                              }).promise.then((r) => {
-                                               p.Icon = localpath;
-                                              });
-                                              }
-                                        );
-                     target.setState({
-                                  dataSource: ds.cloneWithRows(set.returnObj),
-                             });
+                                        set.returnObj.forEach(p =>{
+                                                   var filename = p.Icon.replace(/^.*[\\\/]/, '');
+                                                   var localpath =  target.state.documentPath + filename;
+                                                                RNFS.downloadFile({
+                                                                    fromUrl: p.Icon,
+                                                                    toFile: localpath,
+                                                                  }).promise.then((r) => {
+                                                                   p.Icon = localpath;
+                                                                  });
+                                                                  }
+                                                            );
+                                         target.setState({
+                                                      dataSource: ds.cloneWithRows(set.returnObj),
+                                                 });
+                                          }
+                                          else
+                                          {
+                                            alert(set.errorCode+':'+ set.errorMessage);
+                                          }
                 });
       }
     layoutchanged(e){

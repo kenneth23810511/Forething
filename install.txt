@@ -1,0 +1,6 @@
+
+npm install react-native-fs@latest --save
+react-native link
+
+npm install react-native-image-picker@latest --save
+react-native link

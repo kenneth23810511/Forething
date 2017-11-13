@@ -40,7 +40,7 @@ export default class ProductList extends Component {
                       y:20,
                       documentPath: RNFS.DocumentDirectoryPath+'/',
                     };
-                let params = {'CurrentAllocation':'','CurrentUserId':'','CurrentSessionId':'','CurrentClientId':'','AssemblyName':'CoreBusiness','ClassType':'Product','MethodName':'LoadProducts','CurrentSendParameter':''};
+                let params = {'CurrentAllocation':'','CurrentUserId':'','CurrentToken':'','AssemblyName':'CoreBusiness','ClassType':'Product','MethodName':'LoadProducts','CurrentSendParameter':''};
                 FetchBack.Post(this, params, function (target, set) {
                     if(set.errorCode == Constansts.Success)
                                         {
@@ -54,7 +54,9 @@ export default class ProductList extends Component {
                                                                     toFile: localpath,
                                                                   }).promise.then((r) => {
                                                                    p.Icon = localpath;
-                                                                  });
+                                                                  }).catch(err => {
+                                                                        console.log("downloadFile error: ", err)
+                                                                    });
                                                                   }
                                                             );
                                          target.setState({

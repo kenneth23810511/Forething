@@ -37,17 +37,7 @@ export default class ProductView extends Component {
                       internalContainertop: 0,
                       loading: false,
                     };
-                let params = {'CurrentAllocation':'','CurrentUserId':'','CurrentSessionId':'','CurrentClientId':'','AssemblyName':'CoreBusiness','ClassType':'Product1','MethodName':'LoadProducts','CurrentSendParameter':''};
-                FetchBack.Post(this, params, function (target, set) {
-                    if(set.errorCode == Constansts.Success)
-                                        {
 
-                                          }
-                                          else
-                                          {
-                                            alert(set.errorCode+':'+ set.errorMessage);
-                                          }
-                });
       }
 
     layoutchanged(e){

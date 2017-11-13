@@ -1,6 +1,26 @@
 ﻿import React, { Component } from 'react';
 
 class FetchBack extends React.Component {
+
+    static promisefetch(fetch_promise, timeout) {
+        var abort_fn = null;
+        var abort_promise = new Promise(function(resolve, reject) {
+               abort_fn = function() {
+                  reject('time out, please check the web connection is working!');
+               };
+        });
+
+         var abortable_promise = Promise.race([
+               fetch_promise,
+               abort_promise
+         ]);
+
+         setTimeout(function() {
+               abort_fn();
+          }, timeout);
+
+         return fetch_promise;
+    }
     /*
      *  get请求
      *  url:请求地址
@@ -9,7 +29,7 @@ class FetchBack extends React.Component {
      * */
     static Get(target, params, callback) {
         var url = "http://172.16.23.60:8006/api/transfer";
-
+        var token = "token";
         if (params) {
             let paramsArray = [];
             //拼接参数
@@ -21,12 +41,31 @@ class FetchBack extends React.Component {
             }
         }
         //fetch请求
-        fetch(url, {
+        FetchBack.promisefetch(fetch(url, {
             method: 'GET',
+            headers: {
+                    "Content-Type": "application/json; charset=utf-8",
+                    'Accept': 'application/json',
+                    'Token': token
+                },
+        }), 5000)
+        .then((response) =>
+        {
+            if(response.status == '200'){
+               return response.json();
+             }
+             else{
+                throw response.status;
+             }
         })
         .then((response) => {
-            callback(target, response)
-        }).done();
+            callback(target, response);
+        })
+        .catch(error =>
+        {
+            alert(error);
+        })
+        .done();
     }
     /*
      *  post请求
@@ -38,22 +77,33 @@ class FetchBack extends React.Component {
         var url = "http://172.16.23.60:8006/api/transfer";
         var token = "token";
         var bodycontent = JSON.stringify(params);
-        
+
         //fetch请求
-        fetch(url, {
+        FetchBack.promisefetch(fetch(url, {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json; charset=utf-8",
                 "Accept": "application/json",
-                'token': token
+                'Token': token
             },
             body: bodycontent
-        })
-       .then((response) => response.json())
-       .then((responseJSON) => {
-            callback(target, responseJSON);
-       })
-       .catch(error => alert(error))
+        }), 5000)
+          .then((response) =>
+          {
+              if(response.status == '200'){
+                 return response.json();
+               }
+               else{
+                  throw response.status;
+               }
+          })
+          .then((response) => {
+              callback(target, response);
+          })
+          .catch(error =>
+          {
+              alert(error);
+          })
        .done();
     }
 }

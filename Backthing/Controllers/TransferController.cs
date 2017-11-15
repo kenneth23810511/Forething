@@ -12,27 +12,26 @@ namespace Backthing.Controllers
     [Route("api/[controller]")]
     public class TransferController : Controller
     {
-        // GET api/values
+        // GET api/values/5
         [HttpGet]
-        public string Get()
+        public JsonResult Get(string ServiceCode,
+                string CurrentUserId, string CurrentToken, string CurrentSendParameter)
         {
-            return "Welcome onboard!";
+            return ServiceEngine.InvokeMethod(ServiceCode, CurrentUserId, CurrentToken, CurrentSendParameter);
         }
 
         // GET api/values/5
         [HttpGet("{content}")]
         public JsonResult Pull([FromBody]InEntity content)
         {
-            return ServiceEngine.InvokeMethod(content.AssemblyName, content.ClassType, content.MethodName,
-                content.CurrentUserId, content.CurrentClientId, content.CurrentSendParameter);
+            return ServiceEngine.InvokeMethod(content.ServiceCode, content.CurrentUserId, content.AccessToken, content.CurrentSendParameter);
         }
 
         // POST api/values
         [HttpPost]
         public JsonResult Push([FromBody]InEntity content)
         {
-            return ServiceEngine.InvokeMethod(content.AssemblyName, content.ClassType, content.MethodName,
-                content.CurrentUserId, content.CurrentClientId, content.CurrentSendParameter);
+            return ServiceEngine.InvokeMethod(content.ServiceCode, content.CurrentUserId, content.AccessToken, content.CurrentSendParameter);
         }
     }
 }

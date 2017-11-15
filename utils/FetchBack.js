@@ -27,9 +27,10 @@ class FetchBack extends React.Component {
      *  data:参数
      *  callback:回调函数
      * */
-    static Get(target, params, callback) {
+    static Get(target, serviceCode, inEntity, callback) {
         var url = "http://172.16.23.60:8006/api/transfer";
         var token = "token";
+        let params = {'CurrentAllocation':'','CurrentUserId':'','AccessToken':'','ServiceCode': serviceCode ,'CurrentSendParameter': inEntity};
         if (params) {
             let paramsArray = [];
             //拼接参数
@@ -46,7 +47,7 @@ class FetchBack extends React.Component {
             headers: {
                     "Content-Type": "application/json; charset=utf-8",
                     'Accept': 'application/json',
-                    'Token': token
+                    'AccessToken': token
                 },
         }), 5000)
         .then((response) =>
@@ -73,18 +74,18 @@ class FetchBack extends React.Component {
      *  data:参数
      *  callback:回调函数
      * */
-    static Post(target, params, callback) {
+    static Post(target, serviceCode, inEntity, callback) {
         var url = "http://172.16.23.60:8006/api/transfer";
         var token = "token";
+        let params = {'CurrentAllocation':'','CurrentUserId':'','AccessToken':token,'ServiceCode': serviceCode ,'CurrentSendParameter': inEntity};
         var bodycontent = JSON.stringify(params);
-
         //fetch请求
         FetchBack.promisefetch(fetch(url, {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json; charset=utf-8",
                 "Accept": "application/json",
-                'Token': token
+                'AccessToken': token
             },
             body: bodycontent
         }), 5000)

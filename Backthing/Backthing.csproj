@@ -42,6 +42,9 @@
     <ProjectReference Include="..\CoreCommon\CoreCommon.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <None Update="Resource\Test\product4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Resource\Test\product3.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

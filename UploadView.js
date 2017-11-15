@@ -20,7 +20,7 @@ import FetchBack from './utils/FetchBack';
 import RNFS from 'react-native-fs';
 
 
-export default class ProductView extends Component {
+export default class UploadView extends Component {
     constructor() {
         super();
 
@@ -75,33 +75,77 @@ export default class ProductView extends Component {
       }
 
     static navigationOptions = {
-        title: 'ProductView',
+        title: 'UploadView',
         //header:null,
         headerRight: <Button title="Info" />,
         gesturesEnabled: true
     };
 
-    updateData(data) {
-            let source = { uri: 'data:image/jpeg;base64,' + data };
-                this.setState({
-                       avatarSource: source
-                 });
-            }
-
     upLoader() {
-            this.props.navigation.navigate('UploadView', { WhereFrom: 'Form Product View', updateData: this.updateData.bind(this)  });
+            var ImagePicker = require('react-native-image-picker');
+
+            // More info on all the options is below in the README...just some common use cases shown here
+            var options = {
+              title: 'Select Avatar',
+              customButtons: [
+                {name: 'Baidu', title: 'Choose Photo from Baidu'},
+              ],
+              storageOptions: {
+                skipBackup: true,
+                path: 'images'
+              }
+            };
+
+            /**
+             * The first arg is the options object for customization (it can also be null or omitted for default options),
+             * The second arg is the callback which sends object: response (more info below in README)
+             */
+            ImagePicker.showImagePicker(options, (response) => {
+              console.log('Response = ', response);
+
+              if (response.didCancel) {
+                console.log('User cancelled image picker');
+              }
+              else if (response.error) {
+                console.log('ImagePicker Error: ', response.error);
+              }
+              else if (response.customButton) {
+                console.log('User tapped custom button: ', response.customButton);
+              }
+              else {
+                //let source = { uri: response.uri };
+                let source = { uri: 'data:image/jpeg;base64,' + response.data };
+                // You can also display the image using data:
+                // let source = { uri: 'data:image/jpeg;base64,' + response.data };
+
+                this.setState({
+                  avatarSource: source
+                });
+
+                FetchBack.Post(this, '000002', response.data, function (target, set) {
+                        if(set.errorCode == Constansts.Success)
+                        {
+                          alert (set.returnObj);
+                          }
+                          else
+                          {
+                            alert(set.errorCode+':'+ set.errorMessage);
+                          }
+                    });
+                 this.props.navigation.state.params.updateData(response.data);
+                 }
+            });
         }
 
   render() {
-    var localpath =  Common.GetLocalFullPath(this.props.navigation.state.params.ListViewClickItemHolder.Icon);
+
     return (
       <View style={styles.container} onLayout={(event) => { this.layoutchanged(event) }}>
           <View style={this.internalContainerStyle()}>
             <View>
-                <Image source={{uri:localpath}} style={this.internalImageStyle()} />
-                     <Text>{ this.props.navigation.state.params.ListViewClickItemHolder.FirstName }</Text>
-                     <Button onPress={this.upLoader.bind(this)} title='Load'></Button>
+                     <Text>{ this.props.navigation.state.params.WhereFrom }</Text>
                      <Image source={this.state.avatarSource} style={styles.uploadAvatar} />
+                     <Button onPress={this.upLoader.bind(this)} title='Load'></Button>
               </View>
           </View>
       </View>

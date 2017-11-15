@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Authorization;
+using CoreCommon;
 
 namespace Backthing
 {
@@ -18,8 +20,10 @@ namespace Backthing
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-                .AddEnvironmentVariables();
+                .AddEnvironmentVariables();            
             Configuration = builder.Build();
+
+            HostEntry.GetInstance().Startup();
         }
 
         public IConfigurationRoot Configuration { get; }
@@ -28,7 +32,10 @@ namespace Backthing
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
-            services.AddMvc();
+            services.AddMvc(opts =>
+            {
+                opts.Filters.Add(new UserAuthorizeFilter(new AuthorizationPolicyBuilder().RequireRole("admin").Build()));
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -36,7 +43,7 @@ namespace Backthing
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
-
+                        
             app.UseMvc();
         }
     }

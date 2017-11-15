@@ -8,6 +8,7 @@ using System.Net.Http;
 using System.Net;
 using Microsoft.AspNetCore.Hosting.Internal;
 using System.IO;
+using CoreCommon;
 
 namespace Backthing.Controllers
 {
@@ -31,6 +32,18 @@ namespace Backthing.Controllers
             HttpContext.Response.Headers.Add("ETag", new Random((int)DateTime.Now.Ticks).Next(99999999).ToString());
             HttpContext.Response.Headers.Add("Last-Modified", DateTime.Now.ToString());
             return File(fileArray, "image/png");
+        }
+
+        [HttpPost]
+        public byte[] GetBinaryFile([FromBody]TransferFileInfo fileInfo)
+        {
+            return ServiceEngine.GetBinaryFile(fileInfo);
+        }
+
+        [HttpPost]
+        public TransferFileInfo PushBinaryFileInfo([FromBody]TransferFileInfo fileInfo, byte[] binary)
+        {
+            return ServiceEngine.PushBinaryFileInfo(fileInfo, binary);
         }
     }
 }

@@ -40,8 +40,8 @@ export default class ProductList extends Component {
                       y:20,
                       documentPath: RNFS.DocumentDirectoryPath+'/',
                     };
-                let params = {'CurrentAllocation':'','CurrentUserId':'','CurrentToken':'','AssemblyName':'CoreBusiness','ClassType':'Product','MethodName':'LoadProducts','CurrentSendParameter':''};
-                FetchBack.Post(this, params, function (target, set) {
+
+                FetchBack.Post(this, '000001', '', function (target, set) {
                     if(set.errorCode == Constansts.Success)
                                         {
                                          let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});

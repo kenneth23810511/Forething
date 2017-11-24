@@ -14,13 +14,15 @@ import {
 import { StackNavigator } from 'react-navigation';
 import Login from './Login'
 import Loader from './Loader';
-import ProductList from './ProductList';
-import ProductView from './ProductView';
-import UploadView from './UploadView';
+import Demo from './Business/Product/Demo';
+import ProductList from './Business/Product/ProductList';
+import ProductView from './Business/Product/ProductView';
+import UploadView from './Business/Product/UploadView';
 
 
 export const SimpleApp = StackNavigator({
     Login: { screen: Login },
+    Demo: { screen: Demo },
     ProductList: { screen: ProductList },
     ProductView: { screen: ProductView },
     UploadView: { screen: UploadView },

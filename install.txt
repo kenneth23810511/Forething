@@ -3,8 +3,13 @@ adb install test.apk
 
 adb push 4.jpg /sdcard/dcim/4.jpg
 
+
 npm install react-native-fs@latest --save
 react-native link
 
 npm install react-native-image-picker@latest --save
 react-native link
+
+npm install sha1 --save
+
+npm install react-native-md5 --save

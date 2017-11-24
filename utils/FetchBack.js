@@ -49,7 +49,7 @@ class FetchBack extends React.Component {
                     'Accept': 'application/json',
                     'AccessToken': token
                 },
-        }), 5000)
+        }), 8000)
         .then((response) =>
         {
             if(response.status == '200'){
@@ -64,7 +64,7 @@ class FetchBack extends React.Component {
         })
         .catch(error =>
         {
-            alert(error);
+            callback(target, {errorCode: '000001', errorMessage: error });
         })
         .done();
     }
@@ -88,7 +88,7 @@ class FetchBack extends React.Component {
                 'AccessToken': token
             },
             body: bodycontent
-        }), 5000)
+        }), 8000)
           .then((response) =>
           {
               if(response.status == '200'){
@@ -103,7 +103,7 @@ class FetchBack extends React.Component {
           })
           .catch(error =>
           {
-              alert(error);
+               callback(target, {errorCode: '000001', errorMessage: error });
           })
        .done();
     }

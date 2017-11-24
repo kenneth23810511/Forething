@@ -14,12 +14,12 @@ import {
   Image,
   View
 } from 'react-native';
-import Constansts from './utils/Constants.js';
-import Common from './utils/Common';
-import FetchBack from './utils/FetchBack';
+import Constansts from './../../utils/Constants.js';
+import Common from './../../utils/Common';
+import FetchBack from './../../utils/FetchBack';
 import RNFS from 'react-native-fs';
-import ProductView from './ProductView';
 import { StackNavigator } from 'react-navigation';
+
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -41,32 +41,35 @@ export default class ProductList extends Component {
                       documentPath: RNFS.DocumentDirectoryPath+'/',
                     };
 
-                FetchBack.Post(this, '000001', '', function (target, set) {
+                FetchBack.Post(this, Constansts.TestService001, '{ Guest: "guest", Test: "test"}', function (target, set) {
                     if(set.errorCode == Constansts.Success)
-                                        {
-                                         let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-
-                                        set.returnObj.forEach(p =>{
-                                                   var filename = p.Icon.replace(/^.*[\\\/]/, '');
-                                                   var localpath =  target.state.documentPath + filename;
-                                                                RNFS.downloadFile({
-                                                                    fromUrl: p.Icon,
-                                                                    toFile: localpath,
-                                                                  }).promise.then((r) => {
-                                                                   p.Icon = localpath;
-                                                                  }).catch(err => {
-                                                                        console.log("downloadFile error: ", err)
-                                                                    });
-                                                                  }
-                                                            );
-                                         target.setState({
-                                                      dataSource: ds.cloneWithRows(set.returnObj),
-                                                 });
-                                          }
-                                          else
-                                          {
-                                            alert(set.errorCode+':'+ set.errorMessage);
-                                          }
+                    {
+                         let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+                         set.returnObj.forEach(p =>{
+                                   var filename = p.Icon.replace(/^.*[\\\/]/, '');
+                                   var localpath =  target.state.documentPath + filename;
+                                                RNFS.downloadFile({
+                                                    fromUrl: p.Icon,
+                                                    toFile: localpath,
+                                                  }).promise.then((r) => {
+                                                   p.Icon = localpath;
+                                                  }).catch(err => {
+                                                        console.log("downloadFile error: ", err)
+                                                    });
+                                                  }
+                                            );
+                         target.setState({
+                                      dataSource: ds.cloneWithRows(set.returnObj),
+                                 });
+                      }
+                      else
+                      {
+                         alert(set.errorCode+':'+ set.errorMessage);
+                         let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+                         target.setState({
+                                      dataSource: ds.cloneWithRows(datas),
+                                 });
+                      }
                 });
       }
     layoutchanged(e){

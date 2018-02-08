@@ -9,6 +9,7 @@ import {
     Platform,
     StyleSheet,
     Image,
+    ImageBackground,
     Text,
     TextInput,
     Button,
@@ -39,7 +40,7 @@ export default class Login extends Component {
             loginarealeft: 0,
             loginareatop: 0,
             loading: false
-        };
+        };        
     }
 
     login() {
@@ -51,7 +52,7 @@ export default class Login extends Component {
         var encryption = md5.hex_md5(usernmae + password + loginTime + nonce);
         var inEntity ='{ UserName: "' + usernmae + '",LoginTime: "' + loginTime + '",Nonce: "' + nonce + '", AccessEchoEncryption: "' + encryption + '"}';
 
-        this.props.navigation.navigate('Demo');
+        this.props.navigation.navigate('Demo2');
         /*
         FetchBack.Post(this, Constansts.Login, inEntity , function (target, set) {
             if(set.errorCode == Constansts.Success)
@@ -118,7 +119,7 @@ export default class Login extends Component {
     render() {       
        
         return (
-            <Image source={require('./images/login/loginbg.jpg')} style={styles.login_background}>
+            <ImageBackground source={require('./images/login/loginbg.jpg')} style={styles.login_background}>
                 <View>
                     <Image style={styles.login_image}
                               source={require('./images/login/logo.png')} />
@@ -185,7 +186,7 @@ export default class Login extends Component {
                         </TouchableHighlight>
                   </View>
                 </View>
-            </Image>
+            </ImageBackground>
         );
     }
 }

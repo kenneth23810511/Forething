@@ -13,3 +13,6 @@ react-native link
 npm install sha1 --save
 
 npm install react-native-md5 --save
+
+
+npm install react-native-swiper --save

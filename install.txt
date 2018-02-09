@@ -16,3 +16,7 @@ npm install react-native-md5 --save
 
 
 npm install react-native-swiper --save
+
+npm install --save react-native-material-ripple --save
+
+

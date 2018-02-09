@@ -13,6 +13,7 @@ import {
   ListView,
   TouchableOpacity,
   Image,
+  ImageBackground,
   View
 } from 'react-native';
 import Constansts from './../../utils/Constants.js';
@@ -120,7 +121,7 @@ export default class Demo extends Component {
 
   render() {
     return (
-        <Image source={require('./../../images/common/whitebg.png')} style={styles.entire_background}>
+        <ImageBackground source={require('./../../images/common/whitebg.png')} style={styles.entire_background}>
           <View style={styles.container} onLayout={(event) => { this.layoutchanged(event) }}>
             <View style={{flexDirection: 'row',backgroundColor: '#A52A2A', height: 40}}>
                 <View style={{}}>
@@ -208,7 +209,7 @@ export default class Demo extends Component {
 
                 <ListView style={{width:'90%',backgroundColor: 'transparent'}} dataSource={this.state.dataSource} renderRow={this.renderRow.bind(this)}/>
           </View>
-      </Image>
+      </ImageBackground>
     );
   }
 }

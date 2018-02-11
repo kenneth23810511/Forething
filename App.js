@@ -21,11 +21,10 @@ import ProductView from './Business/Product/ProductView';
 import UploadView from './Business/Product/UploadView';
 
 
-export const SimpleApp = StackNavigator({
-    Demo2: { screen: Demo2 },
+export const SimpleApp = StackNavigator({    
     Login: { screen: Login },
     Demo: { screen: Demo },
-    
+    Demo2: { screen: Demo2 },
     ProductList: { screen: ProductList },
     ProductView: { screen: ProductView },
     UploadView: { screen: UploadView },

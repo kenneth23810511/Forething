@@ -537,6 +537,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: 'transparent'
     },
+    slide4: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'transparent'
+    },
 
     title: {
         flex: 1,

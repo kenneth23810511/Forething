@@ -22,9 +22,10 @@ import UploadView from './Business/Product/UploadView';
 
 
 export const SimpleApp = StackNavigator({
+    Demo2: { screen: Demo2 },
     Login: { screen: Login },
     Demo: { screen: Demo },
-    Demo2: { screen: Demo2 },
+    
     ProductList: { screen: ProductList },
     ProductView: { screen: ProductView },
     UploadView: { screen: UploadView },

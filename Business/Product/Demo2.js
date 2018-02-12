@@ -19,6 +19,8 @@ import {
     ImageBackground,
     View
 } from 'react-native';
+
+import Orientation from 'react-native-orientation';
 import Constansts from './../../utils/Constants.js';
 import Common from './../../utils/Common';
 import FetchBack from './../../utils/FetchBack';
@@ -27,14 +29,12 @@ import PropTypes from 'prop-types';
 import Swiper from 'react-native-swiper';
 import Ripple from 'react-native-material-ripple';
 
-const instructions = Platform.select({
-    ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-    android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
 
 export default class Demo2 extends Component {
+    componentWillMount() {
+        Orientation.lockToLandscape();
+    }
+
     constructor(props) {
         super(props);
 
@@ -45,7 +45,7 @@ export default class Demo2 extends Component {
             height: 101,
             x: 10,
             y: 20,
-            isShowMenu: false, 
+            isShowMenu: false,
 
             pressStatus1: false,
             pressStatus2: true,
@@ -67,32 +67,34 @@ export default class Demo2 extends Component {
             Pagination2: false,
             Pagination3: false,
             Pagination4: false,
+            Pagination5: false,
 
-            isSelected1 :true,
-            isSelected2 :false,
-            isSelected3 :false,
-            isSelected4 :true,
-            isSelected5 :false,
-            isSelected6 :false,
-            isSelected7 :false,
-            isSelected8 :false,
-            isSelected9 :false,
-            isSelected10 :false,
-            isSelected11 :true,
-            isSelected12 :false,
-            isSelected13 :true,
-            isSelected14 :false,
-            isSelected15 :false,
-            isSelected16 :false,
+            isSelected1: true,
+            isSelected2: false,
+            isSelected3: false,
+            isSelected4: true,
+            isSelected5: false,
+            isSelected6: false,
+            isSelected7: false,
+            isSelected8: false,
+            isSelected9: false,
+            isSelected10: false,
+            isSelected11: true,
+            isSelected12: false,
+            isSelected13: true,
+            isSelected14: false,
+            isSelected15: false,
+            isSelected16: false,
         };
     }
+
     layoutchanged(e) {
         this.setState({
             width: Math.ceil(e.nativeEvent.layout.width),
             height: Math.ceil(e.nativeEvent.layout.height),
             x: Math.ceil(e.nativeEvent.layout.x),
             y: Math.ceil(e.nativeEvent.layout.y),
-           
+
         });
     }
 
@@ -138,24 +140,35 @@ export default class Demo2 extends Component {
             this.setState({ Pagination2: false });
             this.setState({ Pagination3: false });
             this.setState({ Pagination4: false });
+            this.setState({ Pagination5: false });
         }
         else if (state.index == 1) {
             this.setState({ Pagination1: false });
             this.setState({ Pagination2: true });
             this.setState({ Pagination3: false });
             this.setState({ Pagination4: false });
+            this.setState({ Pagination5: false });
         }
         else if (state.index == 2) {
             this.setState({ Pagination1: false });
             this.setState({ Pagination2: false });
             this.setState({ Pagination3: true });
             this.setState({ Pagination4: false });
+            this.setState({ Pagination5: false });
         }
         else if (state.index == 3) {
             this.setState({ Pagination1: false });
             this.setState({ Pagination2: false });
             this.setState({ Pagination3: false });
             this.setState({ Pagination4: true });
+            this.setState({ Pagination5: false });
+        }
+        else if (state.index == 4) {
+            this.setState({ Pagination1: false });
+            this.setState({ Pagination2: false });
+            this.setState({ Pagination3: false });
+            this.setState({ Pagination4: false });
+            this.setState({ Pagination5: true });
         }
     }
 
@@ -188,55 +201,59 @@ export default class Demo2 extends Component {
         this.setState({ leftmenu_subitem4: true });
     }
 
-    _onRoutinePress1(){
-            this.setState({ isSelected1: !this.state.isSelected1 });
+    _onRoutinePress1() {
+        this.setState({ isSelected1: !this.state.isSelected1 });
     }
-    _onRoutinePress2(){
-            this.setState({ isSelected2: !this.state.isSelected2 });
+    _onRoutinePress2() {
+        this.setState({ isSelected2: !this.state.isSelected2 });
     }
-    _onRoutinePress3(){
-            this.setState({ isSelected3: !this.state.isSelected3 });
+    _onRoutinePress3() {
+        this.setState({ isSelected3: !this.state.isSelected3 });
     }
-    _onRoutinePress4(){
-            this.setState({ isSelected4: !this.state.isSelected4 });
+    _onRoutinePress4() {
+        this.setState({ isSelected4: !this.state.isSelected4 });
     }
-    _onRoutinePress5(){
-            this.setState({ isSelected5: !this.state.isSelected5 });
+    _onRoutinePress5() {
+        this.setState({ isSelected5: !this.state.isSelected5 });
     }
-    _onRoutinePress6(){
-            this.setState({ isSelected6: !this.state.isSelected6 });
+    _onRoutinePress6() {
+        this.setState({ isSelected6: !this.state.isSelected6 });
     }
-    _onRoutinePress7(){
-            this.setState({ isSelected7: !this.state.isSelected7 });
+    _onRoutinePress7() {
+        this.setState({ isSelected7: !this.state.isSelected7 });
     }
-    _onRoutinePress8(){
-            this.setState({ isSelected8: !this.state.isSelected8 });
+    _onRoutinePress8() {
+        this.setState({ isSelected8: !this.state.isSelected8 });
     }
-    _onRoutinePress9(){
-            this.setState({ isSelected9: !this.state.isSelected9 });
+    _onRoutinePress9() {
+        this.setState({ isSelected9: !this.state.isSelected9 });
     }
-    _onRoutinePress10(){
-            this.setState({ isSelected10: !this.state.isSelected10 });
+    _onRoutinePress10() {
+        this.setState({ isSelected10: !this.state.isSelected10 });
     }
-    _onRoutinePress11(){
-            this.setState({ isSelected11: !this.state.isSelected11 });
+    _onRoutinePress11() {
+        this.setState({ isSelected11: !this.state.isSelected11 });
     }
-    _onRoutinePress12(){
-            this.setState({ isSelected12: !this.state.isSelected12 });
+    _onRoutinePress12() {
+        this.setState({ isSelected12: !this.state.isSelected12 });
     }
-    _onRoutinePress13(){
-            this.setState({ isSelected13: !this.state.isSelected13 });
+    _onRoutinePress13() {
+        this.setState({ isSelected13: !this.state.isSelected13 });
     }
-    _onRoutinePress14(){
-            this.setState({ isSelected14: !this.state.isSelected14 });
+    _onRoutinePress14() {
+        this.setState({ isSelected14: !this.state.isSelected14 });
     }
-    _onRoutinePress15(){
-            this.setState({ isSelected15: !this.state.isSelected15 });
+    _onRoutinePress15() {
+        this.setState({ isSelected15: !this.state.isSelected15 });
     }
-    _onRoutinePress16(){
-            this.setState({ isSelected16: !this.state.isSelected16 });
+    _onRoutinePress16() {
+        this.setState({ isSelected16: !this.state.isSelected16 });
     }
 
+    _onDemoPress() {
+        this.props.navigation.navigate('Demo');
+        Orientation.lockToPortrait();
+    }
 
     render() {
         return (
@@ -262,7 +279,7 @@ export default class Demo2 extends Component {
                             <View style={styles.boxspace}></View>
                         </View>
                         <View style={styles.slide2}>
-                            <Text style={styles.title}>What are your routine?</Text>                            
+                            <Text style={styles.title}>What are your routine?</Text>
                             <View style={styles.box}>
                                 <ImageBackground style={styles.button2}>
                                     <Ripple rippleColor='#FF829B' rippleOpacity={0.8} rippleDuration={600} rippleDuration={1000} rippleContainerBorderRadius={80}></Ripple>
@@ -297,15 +314,15 @@ export default class Demo2 extends Component {
                                 <ImageBackground style={styles.button2}>
                                     <Ripple rippleColor='#FF829B' rippleOpacity={0.8} rippleDuration={600} rippleDuration={1000} rippleContainerBorderRadius={80}></Ripple>
                                 </ImageBackground>
-                             </View>
-                            <View style={styles.box}>   
+                            </View>
+                            <View style={styles.box}>
                                 <ImageBackground style={styles.button2}>
                                     <Ripple rippleColor='#FF829B' rippleOpacity={0.8} rippleDuration={600} rippleDuration={1000} rippleContainerBorderRadius={80}></Ripple>
                                 </ImageBackground>
                                 <ImageBackground source={require('./../../images/common/icon_night.png')} style={styles.button2}>
                                     <Ripple rippleColor='#FF829B' rippleOpacity={0.8} rippleDuration={600} rippleDuration={1000} rippleContainerBorderRadius={80}></Ripple>
                                 </ImageBackground>
-                               <ImageBackground source={this.state.isSelected9 ? require('./../../images/common/selected.png') : require('./../../images/common/un_selected.png')} style={styles.button2}>
+                                <ImageBackground source={this.state.isSelected9 ? require('./../../images/common/selected.png') : require('./../../images/common/un_selected.png')} style={styles.button2}>
                                     <Ripple rippleColor='#FF829B' rippleOpacity={0.8} rippleDuration={600} rippleDuration={1000} rippleContainerBorderRadius={80} onPress={this._onRoutinePress9.bind(this)} style={styles.routinbutton}></Ripple>
                                 </ImageBackground>
                                 <ImageBackground source={this.state.isSelected10 ? require('./../../images/common/selected.png') : require('./../../images/common/un_selected.png')} style={styles.button2}>
@@ -354,7 +371,7 @@ export default class Demo2 extends Component {
                             <View style={styles.boxspace}></View>
                         </View>
                         <View style={styles.slide4}>
-                           <Text style={styles.title}>What are your routine?</Text>                            
+                            <Text style={styles.title}>What are your routine?</Text>
                             <View style={styles.box}>
                                 <ImageBackground style={styles.button2}>
                                     <Ripple rippleColor='#FF829B' rippleOpacity={0.8} rippleDuration={600} rippleDuration={1000} rippleContainerBorderRadius={80}></Ripple>
@@ -389,15 +406,15 @@ export default class Demo2 extends Component {
                                 <ImageBackground style={styles.button2}>
                                     <Ripple rippleColor='#FF829B' rippleOpacity={0.8} rippleDuration={600} rippleDuration={1000} rippleContainerBorderRadius={80}></Ripple>
                                 </ImageBackground>
-                             </View>
-                            <View style={styles.box}>   
+                            </View>
+                            <View style={styles.box}>
                                 <ImageBackground style={styles.button2}>
                                     <Ripple rippleColor='#FF829B' rippleOpacity={0.8} rippleDuration={600} rippleDuration={1000} rippleContainerBorderRadius={80}></Ripple>
                                 </ImageBackground>
                                 <ImageBackground source={require('./../../images/common/icon_night.png')} style={styles.button2}>
                                     <Ripple rippleColor='#FF829B' rippleOpacity={0.8} rippleDuration={600} rippleDuration={1000} rippleContainerBorderRadius={80}></Ripple>
                                 </ImageBackground>
-                               <ImageBackground source={this.state.isSelected9 ? require('./../../images/common/selected.png') : require('./../../images/common/un_selected.png')} style={styles.button2}>
+                                <ImageBackground source={this.state.isSelected9 ? require('./../../images/common/selected.png') : require('./../../images/common/un_selected.png')} style={styles.button2}>
                                     <Ripple rippleColor='#FF829B' rippleOpacity={0.8} rippleDuration={600} rippleDuration={1000} rippleContainerBorderRadius={80} onPress={this._onRoutinePress9.bind(this)} style={styles.routinbutton}></Ripple>
                                 </ImageBackground>
                                 <ImageBackground source={this.state.isSelected10 ? require('./../../images/common/selected.png') : require('./../../images/common/un_selected.png')} style={styles.button2}>
@@ -426,6 +443,11 @@ export default class Demo2 extends Component {
                                 </ImageBackground>
                             </View>
                             <View style={styles.boxspace}></View>
+                        </View>
+                        <View style={styles.slide1}>
+                            <View style={styles.box}>
+                                <Ripple rippleColor='#FF829B' rippleOpacity={0.8} rippleDuration={600} rippleDuration={1000} rippleContainerBorderRadius={80} onPress={this._onDemoPress.bind(this)} style={[styles.button, styles.button_sacnite, styles.button_round_l]}><Text style={styles.subtitle}>Calendar</Text></Ripple>
+                            </View>
                         </View>
                     </Swiper>
                 </View>
@@ -475,24 +497,26 @@ export default class Demo2 extends Component {
                         <ImageBackground source={require('./../../images/common/sidebar_close.png')} style={styles.floatmenuicon}>
                             <Ripple rippleColor='#FF829B' rippleOpacity={0.8} rippleDuration={600} rippleDuration={1000} rippleContainerBorderRadius={80} style={styles.floatmenuicon_button} onPress={this.showMenu.bind(this)}></Ripple>
                         </ImageBackground>
-                    </View>                                
+                    </View>
                 </View>
                 <View style={styles.floatPagination}>
-                        <View style={styles.PaginationText}>
-                             <Text style={styles.Pagination_text}>&lt;Back</Text>
-                        </View>
-                        <View style={this.state.Pagination1 ? styles.Pagination_selected : styles.Pagination}>
-                        </View>
-                        <View style={this.state.Pagination2 ? styles.Pagination_selected : styles.Pagination}>
-                        </View>
-                        <View style={this.state.Pagination3 ? styles.Pagination_selected : styles.Pagination}>
-                        </View>
-                        <View style={this.state.Pagination4 ? styles.Pagination_selected : styles.Pagination}>
-                        </View>
-                        <View style={styles.PaginationText}>
-                             <Text style={styles.Pagination_text}>Next&gt;</Text>
-                        </View>
-                    </View>        
+                    <View style={styles.PaginationText}>
+                        <Text style={styles.Pagination_text}>&lt;Back</Text>
+                    </View>
+                    <View style={this.state.Pagination1 ? styles.Pagination_selected : styles.Pagination}>
+                    </View>
+                    <View style={this.state.Pagination2 ? styles.Pagination_selected : styles.Pagination}>
+                    </View>
+                    <View style={this.state.Pagination3 ? styles.Pagination_selected : styles.Pagination}>
+                    </View>
+                    <View style={this.state.Pagination4 ? styles.Pagination_selected : styles.Pagination}>
+                    </View>
+                    <View style={this.state.Pagination5 ? styles.Pagination_selected : styles.Pagination}>
+                    </View>
+                    <View style={styles.PaginationText}>
+                        <Text style={styles.Pagination_text}>Next&gt;</Text>
+                    </View>
+                </View>
             </ImageBackground>
         );
     }
@@ -568,7 +592,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'transparent',        
+        backgroundColor: 'transparent',
     },
     button: {
         margin: 5,
@@ -593,9 +617,9 @@ const styles = StyleSheet.create({
         borderRadius: 90,
     },
 
-     button2: {       
+    button2: {
         margin: 5,
-        borderWidth: 0,       
+        borderWidth: 0,
         alignItems: 'center',
         justifyContent: 'center',
         width: 50,
@@ -604,17 +628,17 @@ const styles = StyleSheet.create({
         borderRadius: 50,
     },
 
-     routinbutton: {       
+    routinbutton: {
         margin: 5,
-        borderWidth: 0,       
+        borderWidth: 0,
         alignItems: 'center',
         justifyContent: 'center',
         width: 50,
         height: 50,
         backgroundColor: 'transparent',
         borderRadius: 50,
-    },    
-    
+    },
+
 
     floatmenu: {
         position: 'absolute',
@@ -647,11 +671,11 @@ const styles = StyleSheet.create({
         height: '100%',
         flex: 1,
         flexDirection: 'row',
-        justifyContent: 'flex-start',      
-        
-    },   
+        justifyContent: 'flex-start',
 
-    leftMenu: {        
+    },
+
+    leftMenu: {
         width: 80,
         height: '100%',
         flex: 1,
@@ -661,7 +685,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#111111',
     },
 
-    leftMenuclose: {        
+    leftMenuclose: {
         alignItems: 'center',
         justifyContent: 'center',
         width: 20,
@@ -670,21 +694,19 @@ const styles = StyleSheet.create({
     },
 
     leftmenu_subitem: {
-        margin: 10,
         width: 80,
-        height: 90,
+        height: 85,
         alignItems: 'center',
     },
     leftmenu_subitem_selected: {
-        margin: 10,
         width: 80,
-        height: 90,
+        height: 85,
         alignItems: 'center',
         backgroundColor: '#AC995E',
     },
 
     leftmenu_subitem_icon: {
-        marginTop: 10,
+        marginTop: 8,
         width: 40,
         height: 40,
 
@@ -699,7 +721,7 @@ const styles = StyleSheet.create({
         color: '#fff'
     },
 
-     floatPagination: {
+    floatPagination: {
         position: 'absolute',
         left: '10%',
         bottom: 25,
@@ -707,35 +729,35 @@ const styles = StyleSheet.create({
         height: 30,
         flex: 1,
         flexDirection: 'row',
-        justifyContent: 'center',  
+        justifyContent: 'center',
     },
 
-     PaginationText: {
+    PaginationText: {
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
     },
 
-      Pagination_text: {
+    Pagination_text: {
         alignSelf: 'center',
         fontSize: 12,
         color: '#AF6A7C'
     },
-     Pagination_selected: {
-         flex: 1,
-        marginTop: 13,        
+    Pagination_selected: {
+        flex: 1,
+        marginTop: 13,
         height: 5,
         width: '100%',
         backgroundColor: '#E5CB76',
     },
-      Pagination: {
-          flex: 1,
-        marginTop: 13,        
+    Pagination: {
+        flex: 1,
+        marginTop: 13,
         height: 5,
         width: '100%',
         backgroundColor: '#AB1135',
     },
-      
-         
+
+
 });
 

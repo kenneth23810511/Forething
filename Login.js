@@ -18,6 +18,8 @@ import {
     ListView,
     View
 } from 'react-native';
+
+import Orientation from 'react-native-orientation';
 import Constansts from './utils/Constants.js';
 import { StackNavigator } from 'react-navigation';
 import Loader from './Loader';
@@ -25,7 +27,7 @@ import FetchBack from './utils/FetchBack';
 import md5 from "react-native-md5";
 
 export default class Login extends Component {      
-
+    
     constructor(props) {
         super(props);
         this.state = {

@@ -23,16 +23,10 @@ import RNFS from 'react-native-fs';
 import { StackNavigator } from 'react-navigation';
 import PropTypes from 'prop-types';
 import { Calendar, CalendarList, Agenda } from 'react-native-calendars'
+import Orientation from 'react-native-orientation';
 
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
-
-export default class Demo extends Component {
+export default class Demo extends Component {    
     constructor(props) {
         super(props);
         const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
@@ -100,6 +94,11 @@ export default class Demo extends Component {
         //this.props.navigation.navigate('ProductView', { ListViewClickItemHolder: rowData  });
     }
 
+    rollback(){
+        this.props.navigation.navigate('Demo2');
+        Orientation.lockToLandscape();
+    }
+
 
     renderRow(rowData){
         if(rowData.Icon != null)
@@ -125,19 +124,19 @@ export default class Demo extends Component {
           <View style={styles.container} onLayout={(event) => { this.layoutchanged(event) }}>
             <View style={{flexDirection: 'row',backgroundColor: '#A52A2A', height: 40}}>
                 <View style={{}}>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={this.rollback.bind(this)}>
                         <Image style={{height: 30, width: 30, marginTop: 3, marginLeft: 3}} source={require('./../../images/toolbar/menu.png')} />
                     </TouchableOpacity>
                  </View>
                  <View style={{flex: 1}}>
                  </View>
                 <View style={{}}>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={this.rollback.bind(this)}>
                         <Image style={{height: 30, width: 30, marginTop: 3, marginLeft: 3}} source={require('./../../images/toolbar/search.png')} />
                     </TouchableOpacity>
                 </View>
                 <View style={{}}>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={this.rollback.bind(this)}>
                         <Image style={{height: 30, width: 30, marginTop: 3, marginLeft: 3}} source={require('./../../images/toolbar/new.png')} />
                      </TouchableOpacity>
                 </View>

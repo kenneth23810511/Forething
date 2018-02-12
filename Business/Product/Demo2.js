@@ -600,10 +600,10 @@ const styles = StyleSheet.create({
         borderColor: '#E9233A',
         alignItems: 'center',
         justifyContent: 'center',
-        width: 90,
-        height: 90,
+        width: 75,
+        height: 75,
         backgroundColor: 'transparent',
-        borderRadius: 90,
+        borderRadius: 75,
     },
     buttonPress: {
         margin: 5,
@@ -611,10 +611,10 @@ const styles = StyleSheet.create({
         borderColor: '#E9233A',
         alignItems: 'center',
         justifyContent: 'center',
-        width: 90,
-        height: 90,
+        width: 75,
+        height: 75,
         backgroundColor: '#AD1136',
-        borderRadius: 90,
+        borderRadius: 75,
     },
 
     button2: {

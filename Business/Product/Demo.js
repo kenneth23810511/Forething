@@ -125,19 +125,19 @@ export default class Demo extends Component {
             <View style={{flexDirection: 'row',backgroundColor: '#A52A2A', height: 40}}>
                 <View style={{}}>
                     <TouchableOpacity onPress={this.rollback.bind(this)}>
-                        <Image style={{height: 30, width: 30, marginTop: 3, marginLeft: 3}} source={require('./../../images/toolbar/menu.png')} />
+                        <Image style={{height: 30, width: 30, marginTop: 3, marginLeft: 3}} source={require('./../../images/Toolbar/menu.png')} />
                     </TouchableOpacity>
                  </View>
                  <View style={{flex: 1}}>
                  </View>
                 <View style={{}}>
                     <TouchableOpacity onPress={this.rollback.bind(this)}>
-                        <Image style={{height: 30, width: 30, marginTop: 3, marginLeft: 3}} source={require('./../../images/toolbar/search.png')} />
+                        <Image style={{height: 30, width: 30, marginTop: 3, marginLeft: 3}} source={require('./../../images/Toolbar/search.png')} />
                     </TouchableOpacity>
                 </View>
                 <View style={{}}>
                     <TouchableOpacity onPress={this.rollback.bind(this)}>
-                        <Image style={{height: 30, width: 30, marginTop: 3, marginLeft: 3}} source={require('./../../images/toolbar/new.png')} />
+                        <Image style={{height: 30, width: 30, marginTop: 3, marginLeft: 3}} source={require('./../../images/Toolbar/new.png')} />
                      </TouchableOpacity>
                 </View>
             </View>

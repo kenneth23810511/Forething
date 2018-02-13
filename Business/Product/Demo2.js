@@ -259,7 +259,7 @@ export default class Demo2 extends Component {
         return (
             <ImageBackground source={require('./../../images/login/loginbg.jpg')} style={styles.entire_background}>
                 <View style={styles.container}>
-                    <Swiper style={styles.wrapper} onMomentumScrollEnd={this._onMomentumScrollEnd.bind(this)} height={200} horizontal={true} loop={false} showsPagination={false} >
+                    <Swiper style={styles.wrapper} onMomentumScrollEnd={this._onMomentumScrollEnd.bind(this)}  horizontal={true} loop={false} showsPagination={false} >
                         <View style={styles.slide1}>
                             <Text style={styles.title}>What are your 1 biggestskin concerns?</Text>
                             <View style={styles.box}>
@@ -304,7 +304,7 @@ export default class Demo2 extends Component {
                                 </ImageBackground>
                                 <ImageBackground source={this.state.isSelected6 ? require('./../../images/common/selected.png') : require('./../../images/common/un_selected.png')} style={styles.button2}>
                                     <Ripple rippleColor='#FF829B' rippleOpacity={0.8} rippleDuration={600} rippleDuration={1000} rippleContainerBorderRadius={80} onPress={this._onRoutinePress6.bind(this)} style={styles.routinbutton}></Ripple>
-                                </ImageBackground>                                                           
+                                </ImageBackground>
                             </View>
                             <View style={styles.box}>
                                 <ImageBackground style={styles.button2}>
@@ -330,7 +330,7 @@ export default class Demo2 extends Component {
                                 </ImageBackground>
                                 <ImageBackground source={this.state.isSelected14 ? require('./../../images/common/selected.png') : require('./../../images/common/un_selected.png')} style={styles.button2}>
                                     <Ripple rippleColor='#FF829B' rippleOpacity={0.8} rippleDuration={600} rippleDuration={1000} rippleContainerBorderRadius={80} onPress={this._onRoutinePress14.bind(this)} style={styles.routinbutton}></Ripple>
-                                </ImageBackground>                                                        
+                                </ImageBackground>
                             </View>
                             <View style={styles.boxspace}></View>
                         </View>
@@ -378,7 +378,7 @@ export default class Demo2 extends Component {
                                 </ImageBackground>
                                 <ImageBackground source={this.state.isSelected6 ? require('./../../images/common/selected.png') : require('./../../images/common/un_selected.png')} style={styles.button2}>
                                     <Ripple rippleColor='#FF829B' rippleOpacity={0.8} rippleDuration={600} rippleDuration={1000} rippleContainerBorderRadius={80} onPress={this._onRoutinePress6.bind(this)} style={styles.routinbutton}></Ripple>
-                                </ImageBackground>                               
+                                </ImageBackground>
                             </View>
                             <View style={styles.box}>
                                 <ImageBackground style={styles.button2}>
@@ -404,7 +404,7 @@ export default class Demo2 extends Component {
                                 </ImageBackground>
                                 <ImageBackground source={this.state.isSelected14 ? require('./../../images/common/selected.png') : require('./../../images/common/un_selected.png')} style={styles.button2}>
                                     <Ripple rippleColor='#FF829B' rippleOpacity={0.8} rippleDuration={600} rippleDuration={1000} rippleContainerBorderRadius={80} onPress={this._onRoutinePress14.bind(this)} style={styles.routinbutton}></Ripple>
-                                </ImageBackground>                                
+                                </ImageBackground>
                             </View>
                             <View style={styles.boxspace}></View>
                         </View>
@@ -506,6 +506,7 @@ const styles = StyleSheet.create({
     },
 
     slide1: {
+        flexDirection:'column',
         flex: 1,
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -723,4 +724,3 @@ const styles = StyleSheet.create({
 
 
 });
-

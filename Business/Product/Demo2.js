@@ -32,7 +32,10 @@ import Ripple from 'react-native-material-ripple';
 
 export default class Demo2 extends Component {
     componentWillMount() {
+        //removeOrientationListener((Orientation.PORTRAIT) => {});
+        //removeOrientationListener((Orientation.LANDSCAPE) => {});
         Orientation.lockToLandscape();
+        //Orientation.addOrientationListener(() => Orientation.lockToLandscape());
     }
 
     constructor(props) {
@@ -251,8 +254,8 @@ export default class Demo2 extends Component {
     }
 
     _onDemoPress() {
-        this.props.navigation.navigate('Demo');
-        Orientation.lockToPortrait();
+        // this.props.navigation.navigate('Demo');
+        // Orientation.lockToPortrait();
     }
 
     render() {
@@ -457,7 +460,7 @@ export default class Demo2 extends Component {
                             </View>
                         </Ripple>
                     </View>
-                    <View style={styles.leftMenuclose}>
+                    <View style={styles.floatmenuclose}>
                         <ImageBackground source={require('./../../images/common/sidebar_close.png')} style={styles.floatmenuicon}>
                             <Ripple rippleColor='#FF829B' rippleOpacity={0.8} rippleDuration={600} rippleDuration={1000} rippleContainerBorderRadius={80} style={styles.floatmenuicon_button} onPress={this.showMenu.bind(this)}></Ripple>
                         </ImageBackground>
@@ -611,6 +614,14 @@ const styles = StyleSheet.create({
         width: 20,
         height: 120
     },
+    floatmenuclose: {
+        position: 'absolute',
+        flex: 1,
+        left: 80,
+        top: '40%',
+        width: 20,
+        height: 120
+    },
 
     floatmenuicon: {
         width: 20,
@@ -636,16 +647,18 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'flex-start',
+        backgroundColor: 'transparent',
 
     },
 
     leftMenu: {
+        position: 'absolute',
+        left: 0,
         width: 80,
         height: '100%',
         flex: 1,
         flexDirection: 'column',
         justifyContent: 'flex-start',
-        alignItems: 'center',
         backgroundColor: '#111111',
     },
 

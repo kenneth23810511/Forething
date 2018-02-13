@@ -32,7 +32,10 @@ import Ripple from 'react-native-material-ripple';
 
 export default class Demo2 extends Component {
     componentWillMount() {
+        //removeOrientationListener((Orientation.PORTRAIT) => {});
+        //removeOrientationListener((Orientation.LANDSCAPE) => {});
         Orientation.lockToLandscape();
+        //Orientation.addOrientationListener(() => Orientation.lockToLandscape());
     }
 
     constructor(props) {
@@ -251,15 +254,15 @@ export default class Demo2 extends Component {
     }
 
     _onDemoPress() {
-        this.props.navigation.navigate('Demo');
-        Orientation.lockToPortrait();
+        // this.props.navigation.navigate('Demo');
+        // Orientation.lockToPortrait();
     }
 
     render() {
         return (
             <ImageBackground source={require('./../../images/login/loginbg.jpg')} style={styles.entire_background}>
                 <View style={styles.container}>
-                    <Swiper style={styles.wrapper} onMomentumScrollEnd={this._onMomentumScrollEnd.bind(this)} height={200} horizontal={true} loop={false} showsPagination={false} >
+                    <Swiper style={styles.wrapper} onMomentumScrollEnd={this._onMomentumScrollEnd.bind(this)}  horizontal={true} loop={false} showsPagination={false} >
                         <View style={styles.slide1}>
                             <Text style={styles.title}>What are your 1 biggestskin concerns?</Text>
                             <View style={styles.box}>
@@ -304,7 +307,7 @@ export default class Demo2 extends Component {
                                 </ImageBackground>
                                 <ImageBackground source={this.state.isSelected6 ? require('./../../images/common/selected.png') : require('./../../images/common/un_selected.png')} style={styles.button2}>
                                     <Ripple rippleColor='#FF829B' rippleOpacity={0.8} rippleDuration={600} rippleDuration={1000} rippleContainerBorderRadius={80} onPress={this._onRoutinePress6.bind(this)} style={styles.routinbutton}></Ripple>
-                                </ImageBackground>                                                           
+                                </ImageBackground>
                             </View>
                             <View style={styles.box}>
                                 <ImageBackground style={styles.button2}>
@@ -330,7 +333,7 @@ export default class Demo2 extends Component {
                                 </ImageBackground>
                                 <ImageBackground source={this.state.isSelected14 ? require('./../../images/common/selected.png') : require('./../../images/common/un_selected.png')} style={styles.button2}>
                                     <Ripple rippleColor='#FF829B' rippleOpacity={0.8} rippleDuration={600} rippleDuration={1000} rippleContainerBorderRadius={80} onPress={this._onRoutinePress14.bind(this)} style={styles.routinbutton}></Ripple>
-                                </ImageBackground>                                                        
+                                </ImageBackground>
                             </View>
                             <View style={styles.boxspace}></View>
                         </View>
@@ -378,7 +381,7 @@ export default class Demo2 extends Component {
                                 </ImageBackground>
                                 <ImageBackground source={this.state.isSelected6 ? require('./../../images/common/selected.png') : require('./../../images/common/un_selected.png')} style={styles.button2}>
                                     <Ripple rippleColor='#FF829B' rippleOpacity={0.8} rippleDuration={600} rippleDuration={1000} rippleContainerBorderRadius={80} onPress={this._onRoutinePress6.bind(this)} style={styles.routinbutton}></Ripple>
-                                </ImageBackground>                               
+                                </ImageBackground>
                             </View>
                             <View style={styles.box}>
                                 <ImageBackground style={styles.button2}>
@@ -404,7 +407,7 @@ export default class Demo2 extends Component {
                                 </ImageBackground>
                                 <ImageBackground source={this.state.isSelected14 ? require('./../../images/common/selected.png') : require('./../../images/common/un_selected.png')} style={styles.button2}>
                                     <Ripple rippleColor='#FF829B' rippleOpacity={0.8} rippleDuration={600} rippleDuration={1000} rippleContainerBorderRadius={80} onPress={this._onRoutinePress14.bind(this)} style={styles.routinbutton}></Ripple>
-                                </ImageBackground>                                
+                                </ImageBackground>
                             </View>
                             <View style={styles.boxspace}></View>
                         </View>
@@ -457,7 +460,7 @@ export default class Demo2 extends Component {
                             </View>
                         </Ripple>
                     </View>
-                    <View style={styles.leftMenuclose}>
+                    <View style={styles.floatmenuclose}>
                         <ImageBackground source={require('./../../images/common/sidebar_close.png')} style={styles.floatmenuicon}>
                             <Ripple rippleColor='#FF829B' rippleOpacity={0.8} rippleDuration={600} rippleDuration={1000} rippleContainerBorderRadius={80} style={styles.floatmenuicon_button} onPress={this.showMenu.bind(this)}></Ripple>
                         </ImageBackground>
@@ -506,6 +509,7 @@ const styles = StyleSheet.create({
     },
 
     slide1: {
+        flexDirection:'column',
         flex: 1,
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -610,6 +614,14 @@ const styles = StyleSheet.create({
         width: 20,
         height: 120
     },
+    floatmenuclose: {
+        position: 'absolute',
+        flex: 1,
+        left: 80,
+        top: '40%',
+        width: 20,
+        height: 120
+    },
 
     floatmenuicon: {
         width: 20,
@@ -635,16 +647,18 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'flex-start',
+        backgroundColor: 'transparent',
 
     },
 
     leftMenu: {
+        position: 'absolute',
+        left: 0,
         width: 80,
         height: '100%',
         flex: 1,
         flexDirection: 'column',
         justifyContent: 'flex-start',
-        alignItems: 'center',
         backgroundColor: '#111111',
     },
 
@@ -723,4 +737,3 @@ const styles = StyleSheet.create({
 
 
 });
-

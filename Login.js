@@ -26,8 +26,8 @@ import Loader from './Loader';
 import FetchBack from './utils/FetchBack';
 import md5 from "react-native-md5";
 
-export default class Login extends Component {      
-    
+export default class Login extends Component {
+
     constructor(props) {
         super(props);
         this.state = {
@@ -42,10 +42,16 @@ export default class Login extends Component {
             loginarealeft: 0,
             loginareatop: 0,
             loading: false
-        };        
+        };
+    }
+
+    componentWillMount() {
+      Orientation.lockToPortrait();
+      //Orientation.addOrientationListener(() => Orientation.lockToPortrait());
     }
 
     login() {
+
         this.setState({ error: '', loading: true });
         var usernmae = this.state.email;
         var password = this.state.password;
@@ -71,7 +77,7 @@ export default class Login extends Component {
         this.setState({ error: '', loading: false });
     }
 
-    unlogin() {        
+    unlogin() {
         alert(this.state.email);
     }
 
@@ -98,7 +104,7 @@ export default class Login extends Component {
             flexDirection: 'column',
             marginTop: this.state.loginareatop,
             marginBottom: this.state.loginareatop,
-            marginLeft: this.state.loginarealeft, 
+            marginLeft: this.state.loginarealeft,
             marginRight: this.state.loginarealeft,
             width: this.state.loginareawidth,
             height: this.state.loginareaheight,
@@ -118,8 +124,8 @@ export default class Login extends Component {
         title: 'Welcome',
     };
 
-    render() {       
-       
+    render() {
+
         return (
             <ImageBackground source={require('./images/login/loginbg.jpg')} style={styles.login_background}>
                 <View>
@@ -204,9 +210,9 @@ const styles = StyleSheet.create({
     login_container: {
         flex: 1,
         flexDirection: 'column',
-        justifyContent: 'space-between',        
+        justifyContent: 'space-between',
         alignItems: 'center',
-        width: '100%', 
+        width: '100%',
         backgroundColor: 'transparent',
     },
     login_image: {
@@ -228,12 +234,12 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         marginTop: 10,
         height: 40,
-    }, 
+    },
     login_password: {
         backgroundColor: '#fff',
-        height: 40,  
+        height: 40,
     },
-    login_button: {        
+    login_button: {
         marginTop: 15,
         marginLeft: 2,
         marginRight: 2,
@@ -241,7 +247,7 @@ const styles = StyleSheet.create({
         height: 35,
         borderRadius: 2,
         justifyContent: 'center',
-        alignItems: 'center', 
+        alignItems: 'center',
     },
     login_close: {
           marginTop: 3,
@@ -264,14 +270,14 @@ const styles = StyleSheet.create({
     login_bottom: {
         flex: 1, flexDirection: 'row', alignItems: 'flex-end', bottom: 10
     },
-    login_unlogin: {        
+    login_unlogin: {
         marginLeft: 10,
     },
-    login_register: {        
+    login_register: {
         marginRight: 10,
         alignItems: 'flex-end',
         flex: 1,
-        flexDirection: 'row',        
+        flexDirection: 'row',
     },
     login_unlogintext: {
         fontSize: 12,
@@ -279,7 +285,7 @@ const styles = StyleSheet.create({
     },
     login_registertext: {
         flex: 1,
-        flexDirection: 'row', 
+        flexDirection: 'row',
         fontSize: 12,
         color: '#fff',
         textAlign: 'right',

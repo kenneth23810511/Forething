@@ -124,13 +124,13 @@ export default class UploadView extends Component {
                 });
 
                 FetchBack.Post(this, Constansts.TestService002, response.data, function (target, set) {
-                        if(set.errorCode == Constansts.Success)
+                        if(set.ErrorCode == Constansts.Success)
                         {
                           alert (set.returnObj);
                           }
                           else
                           {
-                            alert(set.errorCode+':'+ set.errorMessage);
+                            alert(set.ErrorCode+':'+ set.ErrorMessage);
                           }
                     });
                  this.props.navigation.state.params.updateData(response.data);

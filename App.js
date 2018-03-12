@@ -19,12 +19,11 @@ import Demo2 from './Business/Product/Demo2';
 import ProductList from './Business/Product/ProductList';
 import ProductView from './Business/Product/ProductView';
 import UploadView from './Business/Product/UploadView';
-
+import ShopUserList from './Business/Shop/ShopUserList';
 
 export const SimpleApp = StackNavigator({    
     Login: { screen: Login },
-    Demo: { screen: Demo },
-    Demo2: { screen: Demo2 },
+    ShopUserList: { screen: ShopUserList },   
     ProductList: { screen: ProductList },
     ProductView: { screen: ProductView },
     UploadView: { screen: UploadView },

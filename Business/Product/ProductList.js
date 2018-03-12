@@ -21,13 +21,6 @@ import RNFS from 'react-native-fs';
 import { StackNavigator } from 'react-navigation';
 
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
-
 export default class ProductList extends Component {
     constructor(props) {
             super(props);
@@ -42,7 +35,7 @@ export default class ProductList extends Component {
                     };
 
                 FetchBack.Post(this, Constansts.TestService001, '{ Guest: "guest", Test: "test"}', function (target, set) {
-                    if(set.errorCode == Constansts.Success)
+                    if(set.ErrorCode == Constansts.Success)
                     {
                          let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
                          set.returnObj.forEach(p =>{
@@ -64,7 +57,7 @@ export default class ProductList extends Component {
                       }
                       else
                       {
-                         alert(set.errorCode+':'+ set.errorMessage);
+                         alert(set.ErrorCode+':'+ set.ErrorMessage);
                          let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
                          target.setState({
                                       dataSource: ds.cloneWithRows(datas),

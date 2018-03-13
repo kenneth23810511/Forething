@@ -33,7 +33,7 @@ class FetchBack extends React.Component {
      *  callback:回调函数
      * */
     static Get(target, serviceCode, inEntity, callback) {
-        var url = "http://10.72.1.66/api/smart";
+        var url = "http://base.myfamilyshop.cn/api/smart";
 
         let params = { 'CurrentAllocation': '', 'CurrentUserId': this.currentUserId, 'CurrentSessionId': this.currentSessionId, 'CurrentStoreId': this.currentStoreId, 'ServiceCode': serviceCode, 'currentSendParameter': inEntity };
         if (params) {
@@ -78,7 +78,7 @@ class FetchBack extends React.Component {
      *  callback:回调函数
      * */
     static Post(target, serviceCode, inEntity, callback) {
-        var url = "http://10.72.1.66/api/smart";
+        var url = "http://base.myfamilyshop.cn/api/smart";
         let params = { 'CurrentAllocation': '', 'CurrentUserId': this.currentUserId, 'CurrentSessionId': this.currentSessionId, 'CurrentStoreId': this.currentStoreId, 'ServiceCode': serviceCode, 'currentSendParameter': inEntity };
         var bodycontent = JSON.stringify(params);
         //fetch请求
@@ -109,7 +109,7 @@ class FetchBack extends React.Component {
     }
 
     static Authorize(target, inEntity, callback) {
-        var url = "http://10.72.1.66/api/authorize";
+        var url = "http://base.myfamilyshop.cn/api/authorize";
         let params = {
             'CurrentAllocation': '', 'CurrentUserId': this.currentUserId, 'CurrentSessionId': this.currentSessionId, 'CurrentStoreId': this.currentStoreId,
             'AssemblyName': 'WebBusiness', 'ClassType': 'WebBusiness.SysUserPool', 'MethodName': 'VerifyLoginInHost', 'currentSendParameter': inEntity
@@ -143,7 +143,7 @@ class FetchBack extends React.Component {
     }
 
     static Verify(target, inEntity, callback) {
-        var url = "http://10.72.1.66/api/authorize";
+        var url = "http://base.myfamilyshop.cn/api/authorize";
         let params = {
             'CurrentAllocation': '', 'CurrentUserId': this.currentUserId, 'CurrentSessionId': this.currentSessionId, 'CurrentStoreId': this.currentStoreId,
             'AssemblyName': 'WebBusiness', 'ClassType': 'WebBusiness.SysVerifyPool', 'MethodName': 'PushVerifyCode', 'currentSendParameter': inEntity

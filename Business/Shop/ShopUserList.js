@@ -10,10 +10,11 @@ import {
     StyleSheet,
     Text,
     TextInput,
-    ListView,
+    FlatList,
     Image,
     View,
-    RefreshControl
+    RefreshControl,
+    TouchableHighlight
 } from 'react-native';
 import Constansts from './../../utils/Constants.js';
 import Common from './../../utils/Common';
@@ -25,13 +26,15 @@ import { StackNavigator } from 'react-navigation';
 export default class ShopUserList extends Component {
     constructor(props) {
         super(props);
-        const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+        //const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
         this.state = {
-            pageisloading: false,
+            loading: false,
+            seed: 1,
+            refreshing: false,
             currentModifyID: [],
             resultCurrentPageIndex: 1,
-            resultDefaultDataRows: 15,
-            dataSource: ds.cloneWithRows(['row 1', 'row 2']),
+            resultDefaultDataRows: 5,
+            dataSource: [],//ds.cloneWithRows(['row 1', 'row 2']),
             dataRecords: [],
             width: 100,
             height: 101,
@@ -90,7 +93,7 @@ export default class ShopUserList extends Component {
         FetchBack.Post(this, Constansts.ShopUserLoadResults, queryString, function (target, set) {
             if (set.ErrorCode == Constansts.Success) {
                 var returnObj = JSON.parse(set.ReturnObj);
-                let ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+                //let ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
                 var dataRecords = target.state.dataRecords;
                 /*
@@ -108,11 +111,13 @@ export default class ShopUserList extends Component {
                                           }
                                     );*/
 
-                returnObj.rows.forEach(p =>{ dataRecords.push(p);  });                
+                returnObj.rows.forEach(p => { dataRecords.push(p); });
 
                 target.setState({
-                    dataSource: ds.cloneWithRows(dataRecords),
-                    dataRecords: dataRecords
+                    dataSource: dataRecords,
+                    dataRecords: dataRecords,
+                    loading: false,
+                    refreshing: false
                 });
             }
             else {
@@ -122,54 +127,87 @@ export default class ShopUserList extends Component {
     }
 
 
-
-    renderRow(rowData) {
-        if (rowData.UserCode != null) {
-            //var localpath = Common.GetLocalFullPath(rowData.Icon);
-            return (
-                <View style={styles.itemStyle}>
-                    <Image source={{ uri: 'http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLQWsRVibEribE97ymIXeVY4kolV0ibtvdQ18micZN7ibFEhZOMOkOHDiavHFpNVTv9A4UchAjMsmGKWGUw/132' }} style={styles.imageStyle} />
-                    <View style={styles.subItemStyle}>
-                        <Text style={{ marginTop: 5, fontSize: 17 }}>{rowData.UserCode}</Text>
-                        <Text style={{ marginBottom: 5, fontSize: 13, color: 'green' }} onPress={this.linkTo.bind(this, rowData)}>{rowData.UserName}</Text>
-                    </View>
-                </View>
-            );
-        }
-        return (<View style={styles.itemStyle}></View>);
+    _renderItem = ({ item }) => (
+        <View style={styles.itemStyle}>
+            <Image source={{ uri: 'http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLQWsRVibEribE97ymIXeVY4kolV0ibtvdQ18micZN7ibFEhZOMOkOHDiavHFpNVTv9A4UchAjMsmGKWGUw/132' }} style={styles.imageStyle} />
+            <View style={styles.subItemStyle}>
+                <Text style={{ marginTop: 5, fontSize: 17 }}>{item.UserCode}</Text>
+                <Text style={{ marginBottom: 5, fontSize: 13, color: 'green' }} onPress={this.linkTo.bind(this, item)}>{item.UserName}</Text>
+            </View>
+        </View>
+    );
+    emptyComponent = () => {
+        return <View style={{
+            height: '100%',
+            alignItems: 'center',
+            justifyContent: 'center',
+        }}>
+            <Text style={{
+                fontSize: 16
+            }}>暂无数据下拉刷新</Text>
+        </View>
     }
 
-    onRefresh() {
-        // To-be-implemented
-    }
+     handleRefresh = () => {
+        this.setState(
+          {
+            page: 1,
+            seed: this.state.seed + 1,
+            refreshing: true
+          },
+          () => {
+            this.QueryResult(true, false);
+          }
+        );
+      };
 
-    onEndReached() {
-        alert("trigger");
-        this.setState({ resultCurrentPageIndex: this.state.resultCurrentPageIndex +1 });          
-        this.QueryResult(true, false);
-    }
+onEndReached = () => {
+    alert("trigger");
+    this.setState({ resultCurrentPageIndex: this.state.resultCurrentPageIndex + 1 });
+    this.QueryResult(true, false);
+  }
+
+    _keyExtractor = (item, index) => item.RecId;
+
+    renderHeader = () => {
+        return <TextInput placeholder="Type Here..."  />;
+      };
+
+      renderFooter = () => {
+        if (!this.state.loading) return null;
+
+        return (
+          <View
+            style={{
+              paddingVertical: 20,
+              borderTopWidth: 1,
+              borderColor: "#CED0CE",
+              height:20
+            }}
+          >
+            <ActivityIndicator animating size="large" />
+          </View>
+        );
+      };
 
     render() {
         return (
-            <View style={styles.container} onLayout={(event) => { this.layoutchanged(event) }}>
-                <Text>
-                    My Picture
-              {this.state.width},
-              {this.state.height},
-              {this.state.x},
-              {this.state.y},
-            </Text>
-                <ListView style={styles.styleproducts}
-                    dataSource={this.state.dataSource}
-                    renderRow={this.renderRow.bind(this)}
-                    refreshControl={
-                        <RefreshControl
-                            refreshing={false}
-                            onRefresh={() => this.onRefresh.bind(this)}
-                        />
-                    }
-                    onEndReached={() => this.onEndReached.bind(this)}
-                />
+            <View containerStyle={{ borderTopWidth: 0, borderBottomWidth: 0 }}>
+                <FlatList style={styles.styleproducts}
+                    data={this.state.dataSource}
+                    keyExtractor={this._keyExtractor}
+                    ItemSeparatorComponent={() => <View style={{
+                        height: 1,
+                        backgroundColor: '#D6D6D6'
+                    }} />}
+                    renderItem={this._renderItem}
+                    ListEmptyComponent={this.emptyComponent}
+                    ListHeaderComponent={this.renderHeader}
+                    ListFooterComponent={this.renderFooter}
+                    onRefresh={this.handleRefresh}
+                    refreshing={this.state.refreshing}
+                    onEndReached={this.onEndReached}
+                    onEndReachedThreshold={0.5} />
             </View>
         );
     }
@@ -182,7 +220,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#DDDDDD',
         width: '100%',
-        height: '100%',
+        height: 300,
+        margin: 20
     },
     styleproducts: {
         width: '90%',

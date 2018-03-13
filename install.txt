@@ -30,3 +30,8 @@ react-native run-android --variant=release
 
 
 npm install base-64 --save
+
+
+
+
+ react-native run-android --variant=release

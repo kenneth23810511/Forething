@@ -33,7 +33,7 @@ export default class ShopUserList extends Component {
             refreshing: false,
             currentModifyID: [],
             resultCurrentPageIndex: 1,
-            resultDefaultDataRows: 5,
+            resultDefaultDataRows: 2,
             dataSource: [],//ds.cloneWithRows(['row 1', 'row 2']),
             dataRecords: [],
             width: 100,
@@ -161,10 +161,10 @@ export default class ShopUserList extends Component {
         );
       };
 
-onEndReached = () => {
-    alert("trigger");
+    onEndReached = () => {
     this.setState({ resultCurrentPageIndex: this.state.resultCurrentPageIndex + 1 });
     this.QueryResult(true, false);
+    this.setState({ resultDefaultDataRows: 4 });
   }
 
     _keyExtractor = (item, index) => item.RecId;
@@ -220,8 +220,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#DDDDDD',
         width: '100%',
-        height: 300,
-        margin: 20
+        height: '100%',
+        margin: 3
     },
     styleproducts: {
         width: '90%',

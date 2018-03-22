@@ -1,3 +1,4 @@
+
 /**
  * Sample React Native App
  * https://github.com/facebook/react-native
@@ -260,7 +261,7 @@ export default class Demo2 extends Component {
 
     render() {
         return (
-            <ImageBackground source={require('./../../images/login/loginbg.jpg')} style={styles.entire_background}>
+            <ImageBackground source={require('./../../../images/login/loginbg.jpg')} style={styles.entire_background}>
                 <View style={styles.container}>
                     <Swiper style={styles.wrapper} onMomentumScrollEnd={this._onMomentumScrollEnd.bind(this)}  horizontal={true} loop={false} showsPagination={false} >
                         <View style={styles.slide1}>
@@ -287,25 +288,25 @@ export default class Demo2 extends Component {
                                 <ImageBackground style={styles.button2}>
                                     <Ripple rippleColor='#FF829B' rippleOpacity={0.8} rippleDuration={600} rippleDuration={1000} rippleContainerBorderRadius={80}></Ripple>
                                 </ImageBackground>
-                                <ImageBackground source={require('./../../images/common/icon_day.png')} style={styles.button2}>
+                                <ImageBackground source={require('./../../../images/common/icon_day.png')} style={styles.button2}>
                                     <Ripple rippleColor='#FF829B' rippleOpacity={0.8} rippleDuration={600} rippleDuration={1000} rippleContainerBorderRadius={80}></Ripple>
                                 </ImageBackground>
-                                <ImageBackground source={this.state.isSelected1 ? require('./../../images/common/selected.png') : require('./../../images/common/un_selected.png')} style={styles.button2}>
+                                <ImageBackground source={this.state.isSelected1 ? require('./../../../images/common/selected.png') : require('./../../../images/common/un_selected.png')} style={styles.button2}>
                                     <Ripple rippleColor='#FF829B' rippleOpacity={0.8} rippleDuration={600} rippleDuration={1000} rippleContainerBorderRadius={80} onPress={this._onRoutinePress1.bind(this)} style={styles.routinbutton}></Ripple>
                                 </ImageBackground>
-                                <ImageBackground source={this.state.isSelected2 ? require('./../../images/common/selected.png') : require('./../../images/common/un_selected.png')} style={styles.button2}>
+                                <ImageBackground source={this.state.isSelected2 ? require('./../../../images/common/selected.png') : require('./../../../images/common/un_selected.png')} style={styles.button2}>
                                     <Ripple rippleColor='#FF829B' rippleOpacity={0.8} rippleDuration={600} rippleDuration={1000} rippleContainerBorderRadius={80} onPress={this._onRoutinePress2.bind(this)} style={styles.routinbutton}></Ripple>
                                 </ImageBackground>
-                                <ImageBackground source={this.state.isSelected3 ? require('./../../images/common/selected.png') : require('./../../images/common/un_selected.png')} style={styles.button2}>
+                                <ImageBackground source={this.state.isSelected3 ? require('./../../../images/common/selected.png') : require('./../../../images/common/un_selected.png')} style={styles.button2}>
                                     <Ripple rippleColor='#FF829B' rippleOpacity={0.8} rippleDuration={600} rippleDuration={1000} rippleContainerBorderRadius={80} onPress={this._onRoutinePress3.bind(this)} style={styles.routinbutton}></Ripple>
                                 </ImageBackground>
-                                <ImageBackground source={this.state.isSelected4 ? require('./../../images/common/selected.png') : require('./../../images/common/un_selected.png')} style={styles.button2}>
+                                <ImageBackground source={this.state.isSelected4 ? require('./../../../images/common/selected.png') : require('./../../../images/common/un_selected.png')} style={styles.button2}>
                                     <Ripple rippleColor='#FF829B' rippleOpacity={0.8} rippleDuration={600} rippleDuration={1000} rippleContainerBorderRadius={80} onPress={this._onRoutinePress4.bind(this)} style={styles.routinbutton}></Ripple>
                                 </ImageBackground>
-                                <ImageBackground source={this.state.isSelected5 ? require('./../../images/common/selected.png') : require('./../../images/common/un_selected.png')} style={styles.button2}>
+                                <ImageBackground source={this.state.isSelected5 ? require('./../../../images/common/selected.png') : require('./../../../images/common/un_selected.png')} style={styles.button2}>
                                     <Ripple rippleColor='#FF829B' rippleOpacity={0.8} rippleDuration={600} rippleDuration={1000} rippleContainerBorderRadius={80} onPress={this._onRoutinePress5.bind(this)} style={styles.routinbutton}></Ripple>
                                 </ImageBackground>
-                                <ImageBackground source={this.state.isSelected6 ? require('./../../images/common/selected.png') : require('./../../images/common/un_selected.png')} style={styles.button2}>
+                                <ImageBackground source={this.state.isSelected6 ? require('./../../../images/common/selected.png') : require('./../../../images/common/un_selected.png')} style={styles.button2}>
                                     <Ripple rippleColor='#FF829B' rippleOpacity={0.8} rippleDuration={600} rippleDuration={1000} rippleContainerBorderRadius={80} onPress={this._onRoutinePress6.bind(this)} style={styles.routinbutton}></Ripple>
                                 </ImageBackground>
                             </View>
@@ -313,25 +314,25 @@ export default class Demo2 extends Component {
                                 <ImageBackground style={styles.button2}>
                                     <Ripple rippleColor='#FF829B' rippleOpacity={0.8} rippleDuration={600} rippleDuration={1000} rippleContainerBorderRadius={80}></Ripple>
                                 </ImageBackground>
-                                <ImageBackground source={require('./../../images/common/icon_night.png')} style={styles.button2}>
+                                <ImageBackground source={require('./../../../images/common/icon_night.png')} style={styles.button2}>
                                     <Ripple rippleColor='#FF829B' rippleOpacity={0.8} rippleDuration={600} rippleDuration={1000} rippleContainerBorderRadius={80}></Ripple>
                                 </ImageBackground>
-                                <ImageBackground source={this.state.isSelected9 ? require('./../../images/common/selected.png') : require('./../../images/common/un_selected.png')} style={styles.button2}>
+                                <ImageBackground source={this.state.isSelected9 ? require('./../../../images/common/selected.png') : require('./../../../images/common/un_selected.png')} style={styles.button2}>
                                     <Ripple rippleColor='#FF829B' rippleOpacity={0.8} rippleDuration={600} rippleDuration={1000} rippleContainerBorderRadius={80} onPress={this._onRoutinePress9.bind(this)} style={styles.routinbutton}></Ripple>
                                 </ImageBackground>
-                                <ImageBackground source={this.state.isSelected10 ? require('./../../images/common/selected.png') : require('./../../images/common/un_selected.png')} style={styles.button2}>
+                                <ImageBackground source={this.state.isSelected10 ? require('./../../../images/common/selected.png') : require('./../../../images/common/un_selected.png')} style={styles.button2}>
                                     <Ripple rippleColor='#FF829B' rippleOpacity={0.8} rippleDuration={600} rippleDuration={1000} rippleContainerBorderRadius={80} onPress={this._onRoutinePress10.bind(this)} style={styles.routinbutton}></Ripple>
                                 </ImageBackground>
-                                <ImageBackground source={this.state.isSelected11 ? require('./../../images/common/selected.png') : require('./../../images/common/un_selected.png')} style={styles.button2}>
+                                <ImageBackground source={this.state.isSelected11 ? require('./../../../images/common/selected.png') : require('./../../../images/common/un_selected.png')} style={styles.button2}>
                                     <Ripple rippleColor='#FF829B' rippleOpacity={0.8} rippleDuration={600} rippleDuration={1000} rippleContainerBorderRadius={80} onPress={this._onRoutinePress11.bind(this)} style={styles.routinbutton}></Ripple>
                                 </ImageBackground>
-                                <ImageBackground source={this.state.isSelected12 ? require('./../../images/common/selected.png') : require('./../../images/common/un_selected.png')} style={styles.button2}>
+                                <ImageBackground source={this.state.isSelected12 ? require('./../../../images/common/selected.png') : require('./../../../images/common/un_selected.png')} style={styles.button2}>
                                     <Ripple rippleColor='#FF829B' rippleOpacity={0.8} rippleDuration={600} rippleDuration={1000} rippleContainerBorderRadius={80} onPress={this._onRoutinePress12.bind(this)} style={styles.routinbutton}></Ripple>
                                 </ImageBackground>
-                                <ImageBackground source={this.state.isSelected13 ? require('./../../images/common/selected.png') : require('./../../images/common/un_selected.png')} style={styles.button2}>
+                                <ImageBackground source={this.state.isSelected13 ? require('./../../../images/common/selected.png') : require('./../../../images/common/un_selected.png')} style={styles.button2}>
                                     <Ripple rippleColor='#FF829B' rippleOpacity={0.8} rippleDuration={600} rippleDuration={1000} rippleContainerBorderRadius={80} onPress={this._onRoutinePress13.bind(this)} style={styles.routinbutton}></Ripple>
                                 </ImageBackground>
-                                <ImageBackground source={this.state.isSelected14 ? require('./../../images/common/selected.png') : require('./../../images/common/un_selected.png')} style={styles.button2}>
+                                <ImageBackground source={this.state.isSelected14 ? require('./../../../images/common/selected.png') : require('./../../../images/common/un_selected.png')} style={styles.button2}>
                                     <Ripple rippleColor='#FF829B' rippleOpacity={0.8} rippleDuration={600} rippleDuration={1000} rippleContainerBorderRadius={80} onPress={this._onRoutinePress14.bind(this)} style={styles.routinbutton}></Ripple>
                                 </ImageBackground>
                             </View>
@@ -361,25 +362,25 @@ export default class Demo2 extends Component {
                                 <ImageBackground style={styles.button2}>
                                     <Ripple rippleColor='#FF829B' rippleOpacity={0.8} rippleDuration={600} rippleDuration={1000} rippleContainerBorderRadius={80}></Ripple>
                                 </ImageBackground>
-                                <ImageBackground source={require('./../../images/common/icon_day.png')} style={styles.button2}>
+                                <ImageBackground source={require('./../../../images/common/icon_day.png')} style={styles.button2}>
                                     <Ripple rippleColor='#FF829B' rippleOpacity={0.8} rippleDuration={600} rippleDuration={1000} rippleContainerBorderRadius={80}></Ripple>
                                 </ImageBackground>
-                                <ImageBackground source={this.state.isSelected1 ? require('./../../images/common/selected.png') : require('./../../images/common/un_selected.png')} style={styles.button2}>
+                                <ImageBackground source={this.state.isSelected1 ? require('./../../../images/common/selected.png') : require('./../../../images/common/un_selected.png')} style={styles.button2}>
                                     <Ripple rippleColor='#FF829B' rippleOpacity={0.8} rippleDuration={600} rippleDuration={1000} rippleContainerBorderRadius={80} onPress={this._onRoutinePress1.bind(this)} style={styles.routinbutton}></Ripple>
                                 </ImageBackground>
-                                <ImageBackground source={this.state.isSelected2 ? require('./../../images/common/selected.png') : require('./../../images/common/un_selected.png')} style={styles.button2}>
+                                <ImageBackground source={this.state.isSelected2 ? require('./../../../images/common/selected.png') : require('./../../../images/common/un_selected.png')} style={styles.button2}>
                                     <Ripple rippleColor='#FF829B' rippleOpacity={0.8} rippleDuration={600} rippleDuration={1000} rippleContainerBorderRadius={80} onPress={this._onRoutinePress2.bind(this)} style={styles.routinbutton}></Ripple>
                                 </ImageBackground>
-                                <ImageBackground source={this.state.isSelected3 ? require('./../../images/common/selected.png') : require('./../../images/common/un_selected.png')} style={styles.button2}>
+                                <ImageBackground source={this.state.isSelected3 ? require('./../../../images/common/selected.png') : require('./../../../images/common/un_selected.png')} style={styles.button2}>
                                     <Ripple rippleColor='#FF829B' rippleOpacity={0.8} rippleDuration={600} rippleDuration={1000} rippleContainerBorderRadius={80} onPress={this._onRoutinePress3.bind(this)} style={styles.routinbutton}></Ripple>
                                 </ImageBackground>
-                                <ImageBackground source={this.state.isSelected4 ? require('./../../images/common/selected.png') : require('./../../images/common/un_selected.png')} style={styles.button2}>
+                                <ImageBackground source={this.state.isSelected4 ? require('./../../../images/common/selected.png') : require('./../../../images/common/un_selected.png')} style={styles.button2}>
                                     <Ripple rippleColor='#FF829B' rippleOpacity={0.8} rippleDuration={600} rippleDuration={1000} rippleContainerBorderRadius={80} onPress={this._onRoutinePress4.bind(this)} style={styles.routinbutton}></Ripple>
                                 </ImageBackground>
-                                <ImageBackground source={this.state.isSelected5 ? require('./../../images/common/selected.png') : require('./../../images/common/un_selected.png')} style={styles.button2}>
+                                <ImageBackground source={this.state.isSelected5 ? require('./../../../images/common/selected.png') : require('./../../../images/common/un_selected.png')} style={styles.button2}>
                                     <Ripple rippleColor='#FF829B' rippleOpacity={0.8} rippleDuration={600} rippleDuration={1000} rippleContainerBorderRadius={80} onPress={this._onRoutinePress5.bind(this)} style={styles.routinbutton}></Ripple>
                                 </ImageBackground>
-                                <ImageBackground source={this.state.isSelected6 ? require('./../../images/common/selected.png') : require('./../../images/common/un_selected.png')} style={styles.button2}>
+                                <ImageBackground source={this.state.isSelected6 ? require('./../../../images/common/selected.png') : require('./../../../images/common/un_selected.png')} style={styles.button2}>
                                     <Ripple rippleColor='#FF829B' rippleOpacity={0.8} rippleDuration={600} rippleDuration={1000} rippleContainerBorderRadius={80} onPress={this._onRoutinePress6.bind(this)} style={styles.routinbutton}></Ripple>
                                 </ImageBackground>
                             </View>
@@ -387,25 +388,25 @@ export default class Demo2 extends Component {
                                 <ImageBackground style={styles.button2}>
                                     <Ripple rippleColor='#FF829B' rippleOpacity={0.8} rippleDuration={600} rippleDuration={1000} rippleContainerBorderRadius={80}></Ripple>
                                 </ImageBackground>
-                                <ImageBackground source={require('./../../images/common/icon_night.png')} style={styles.button2}>
+                                <ImageBackground source={require('./../../../images/common/icon_night.png')} style={styles.button2}>
                                     <Ripple rippleColor='#FF829B' rippleOpacity={0.8} rippleDuration={600} rippleDuration={1000} rippleContainerBorderRadius={80}></Ripple>
                                 </ImageBackground>
-                                <ImageBackground source={this.state.isSelected9 ? require('./../../images/common/selected.png') : require('./../../images/common/un_selected.png')} style={styles.button2}>
+                                <ImageBackground source={this.state.isSelected9 ? require('./../../../images/common/selected.png') : require('./../../../images/common/un_selected.png')} style={styles.button2}>
                                     <Ripple rippleColor='#FF829B' rippleOpacity={0.8} rippleDuration={600} rippleDuration={1000} rippleContainerBorderRadius={80} onPress={this._onRoutinePress9.bind(this)} style={styles.routinbutton}></Ripple>
                                 </ImageBackground>
-                                <ImageBackground source={this.state.isSelected10 ? require('./../../images/common/selected.png') : require('./../../images/common/un_selected.png')} style={styles.button2}>
+                                <ImageBackground source={this.state.isSelected10 ? require('./../../../images/common/selected.png') : require('./../../../images/common/un_selected.png')} style={styles.button2}>
                                     <Ripple rippleColor='#FF829B' rippleOpacity={0.8} rippleDuration={600} rippleDuration={1000} rippleContainerBorderRadius={80} onPress={this._onRoutinePress10.bind(this)} style={styles.routinbutton}></Ripple>
                                 </ImageBackground>
-                                <ImageBackground source={this.state.isSelected11 ? require('./../../images/common/selected.png') : require('./../../images/common/un_selected.png')} style={styles.button2}>
+                                <ImageBackground source={this.state.isSelected11 ? require('./../../../images/common/selected.png') : require('./../../../images/common/un_selected.png')} style={styles.button2}>
                                     <Ripple rippleColor='#FF829B' rippleOpacity={0.8} rippleDuration={600} rippleDuration={1000} rippleContainerBorderRadius={80} onPress={this._onRoutinePress11.bind(this)} style={styles.routinbutton}></Ripple>
                                 </ImageBackground>
-                                <ImageBackground source={this.state.isSelected12 ? require('./../../images/common/selected.png') : require('./../../images/common/un_selected.png')} style={styles.button2}>
+                                <ImageBackground source={this.state.isSelected12 ? require('./../../../images/common/selected.png') : require('./../../../images/common/un_selected.png')} style={styles.button2}>
                                     <Ripple rippleColor='#FF829B' rippleOpacity={0.8} rippleDuration={600} rippleDuration={1000} rippleContainerBorderRadius={80} onPress={this._onRoutinePress12.bind(this)} style={styles.routinbutton}></Ripple>
                                 </ImageBackground>
-                                <ImageBackground source={this.state.isSelected13 ? require('./../../images/common/selected.png') : require('./../../images/common/un_selected.png')} style={styles.button2}>
+                                <ImageBackground source={this.state.isSelected13 ? require('./../../../images/common/selected.png') : require('./../../../images/common/un_selected.png')} style={styles.button2}>
                                     <Ripple rippleColor='#FF829B' rippleOpacity={0.8} rippleDuration={600} rippleDuration={1000} rippleContainerBorderRadius={80} onPress={this._onRoutinePress13.bind(this)} style={styles.routinbutton}></Ripple>
                                 </ImageBackground>
-                                <ImageBackground source={this.state.isSelected14 ? require('./../../images/common/selected.png') : require('./../../images/common/un_selected.png')} style={styles.button2}>
+                                <ImageBackground source={this.state.isSelected14 ? require('./../../../images/common/selected.png') : require('./../../../images/common/un_selected.png')} style={styles.button2}>
                                     <Ripple rippleColor='#FF829B' rippleOpacity={0.8} rippleDuration={600} rippleDuration={1000} rippleContainerBorderRadius={80} onPress={this._onRoutinePress14.bind(this)} style={styles.routinbutton}></Ripple>
                                 </ImageBackground>
                             </View>
@@ -413,14 +414,14 @@ export default class Demo2 extends Component {
                         </View>
                         <View style={styles.slide1}>
                             <View style={styles.box}>
-                                <Ripple rippleColor='#FF829B' rippleOpacity={0.8} rippleDuration={600} rippleDuration={1000} rippleContainerBorderRadius={80} onPress={this._onDemoPress.bind(this)} style={[styles.button, styles.button_sacnite, styles.button_round_l]}><Text style={styles.subtitle}>Calendar</Text></Ripple>
+                                <Ripple rippleColor='#FF829B' rippleOpacity={0.8} rippleDuration={600} rippleDuration={1000} rippleContainerBorderRadius={80} onPress={this._onDemoPress.bind(this)} style={[styles.button, styles.button_sacnite, styles.button_round_l]}><Text style={styles.subtitle}>To Be Continued</Text></Ripple>
                             </View>
                         </View>
                     </Swiper>
                 </View>
 
                 <View style={styles.floatmenu}>
-                    <ImageBackground source={require('./../../images/common/sidebar.png')} style={styles.floatmenuicon}>
+                    <ImageBackground source={require('./../../../images/common/sidebar.png')} style={styles.floatmenuicon}>
                         <Ripple rippleColor='#FF829B' rippleOpacity={0.8} rippleDuration={600} rippleDuration={1000} rippleContainerBorderRadius={80} style={styles.floatmenuicon_button} onPress={this.showMenu.bind(this)}></Ripple>
                     </ImageBackground>
                 </View>
@@ -429,7 +430,7 @@ export default class Demo2 extends Component {
                     <View style={styles.leftMenu}>
                         <Ripple rippleColor='#FF829B' rippleOpacity={0.8} rippleDuration={600} rippleDuration={1000} rippleContainerBorderRadius={80} rippleContainerBorderRadius={80} onPress={this._onPressleftmenu_subitem1.bind(this)} style={this.state.leftmenu_subitem1 ? styles.leftmenu_subitem_selected : styles.leftmenu_subitem}>
                             <View style={styles.leftmenu_subitem_icon}>
-                                <Image style={{ width: 40, height: 40 }} source={require('./../../images/common/icon_sidebar_01.png')} />
+                                <Image style={{ width: 40, height: 40 }} source={require('./../../../images/common/icon_sidebar_01.png')} />
                             </View>
                             <View style={styles.leftmenu_subitem_title}>
                                 <Text style={styles.leftmenu_text}>Skin</Text><Text style={styles.leftmenu_text}>Quesionnaire</Text>
@@ -437,7 +438,7 @@ export default class Demo2 extends Component {
                         </Ripple>
                         <Ripple rippleColor='#FF829B' rippleOpacity={0.8} rippleDuration={600} rippleDuration={1000} rippleContainerBorderRadius={80} onPress={this._onPressleftmenu_subitem2.bind(this)} style={this.state.leftmenu_subitem2 ? styles.leftmenu_subitem_selected : styles.leftmenu_subitem}>
                             <View style={styles.leftmenu_subitem_icon}>
-                                <Image style={{ width: 40, height: 40 }} source={require('./../../images/common/icon_sidebar_02.png')} />
+                                <Image style={{ width: 40, height: 40 }} source={require('./../../../images/common/icon_sidebar_02.png')} />
                             </View>
                             <View style={styles.leftmenu_subitem_title}>
                                 <Text style={styles.leftmenu_text}>Magic</Text><Text style={styles.leftmenu_text}>RingAnalysis</Text>
@@ -445,7 +446,7 @@ export default class Demo2 extends Component {
                         </Ripple>
                         <Ripple rippleColor='#FF829B' rippleOpacity={0.8} rippleDuration={600} rippleDuration={1000} rippleContainerBorderRadius={80} onPress={this._onPressleftmenu_subitem3.bind(this)} style={this.state.leftmenu_subitem3 ? styles.leftmenu_subitem_selected : styles.leftmenu_subitem}>
                             <View style={styles.leftmenu_subitem_icon}>
-                                <Image style={{ width: 40, height: 40 }} source={require('./../../images/common/icon_sidebar_03.png')} />
+                                <Image style={{ width: 40, height: 40 }} source={require('./../../../images/common/icon_sidebar_03.png')} />
                             </View>
                             <View style={styles.leftmenu_subitem_title}>
                                 <Text style={styles.leftmenu_text}>Product</Text><Text style={styles.leftmenu_text}>Catalog</Text>
@@ -453,7 +454,7 @@ export default class Demo2 extends Component {
                         </Ripple>
                         <Ripple rippleColor='#FF829B' rippleOpacity={0.8} rippleDuration={600} rippleDuration={1000} rippleContainerBorderRadius={80} onPress={this._onPressleftmenu_subitem4.bind(this)} style={this.state.leftmenu_subitem4 ? styles.leftmenu_subitem_selected : styles.leftmenu_subitem}>
                             <View style={styles.leftmenu_subitem_icon}>
-                                <Image style={{ width: 40, height: 40 }} source={require('./../../images/common/icon_sidebar_04.png')} />
+                                <Image style={{ width: 40, height: 40 }} source={require('./../../../images/common/icon_sidebar_04.png')} />
                             </View>
                             <View style={styles.leftmenu_subitem_title}>
                                 <Text style={styles.leftmenu_text}>Personal</Text><Text style={styles.leftmenu_text}>Beauty Guide</Text>
@@ -461,7 +462,7 @@ export default class Demo2 extends Component {
                         </Ripple>
                     </View>
                     <View style={styles.floatmenuclose}>
-                        <ImageBackground source={require('./../../images/common/sidebar_close.png')} style={styles.floatmenuicon}>
+                        <ImageBackground source={require('./../../../images/common/sidebar_close.png')} style={styles.floatmenuicon}>
                             <Ripple rippleColor='#FF829B' rippleOpacity={0.8} rippleDuration={600} rippleDuration={1000} rippleContainerBorderRadius={80} style={styles.floatmenuicon_button} onPress={this.showMenu.bind(this)}></Ripple>
                         </ImageBackground>
                     </View>

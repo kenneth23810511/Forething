@@ -12,16 +12,16 @@ import {
   View
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
-import Login from './Login'
-import Loader from './Loader';
-import Demo from './Business/Product/Demo';
-import Demo2 from './Business/Product/Demo2';
-import ProductList from './Business/Product/ProductList';
-import ProductView from './Business/Product/ProductView';
-import UploadView from './Business/Product/UploadView';
+import Login from './../src/Login'
+import Loader from './../src/Loader';
+import Demo from './../src/Business/Product/Demo';
+import Demo2 from './../src/Business/Product/Demo2';
+import ProductList from './../src/Business/Product/ProductList';
+import ProductView from './../src/Business/Product/ProductView';
+import UploadView from './../src/Business/Product/UploadView';
 
 
-export const SimpleApp = StackNavigator({    
+export const SimpleApp = StackNavigator({
     Login: { screen: Login },
     Demo: { screen: Demo },
     Demo2: { screen: Demo2 },
@@ -30,16 +30,18 @@ export const SimpleApp = StackNavigator({
     UploadView: { screen: UploadView },
 });
 
-export default class App extends Component {
+export default class App extends React.Component {
     state = { loggedIn: false };
-        
+
 
     static navigationOptions = {
         title: 'Welcome'
     };
 
     render() {
-        return <SimpleApp />;
+        return(
+          <SimpleApp />
+        );
     }
 }
 

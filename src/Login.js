@@ -19,11 +19,12 @@ import {
     View
 } from 'react-native';
 
+
 import Orientation from 'react-native-orientation';
-import Constansts from './utils/Constants.js';
+import Constansts from './../src/utils/Constants.js';
 import { StackNavigator } from 'react-navigation';
-import Loader from './Loader';
-import FetchBack from './utils/FetchBack';
+import Loader from './../src/Loader';
+import FetchBack from './../src/utils/FetchBack';
 import md5 from "react-native-md5";
 
 export default class Login extends Component {
@@ -31,6 +32,7 @@ export default class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            orientation:'PORTRAIT',
             email: '',
             password: '',
             width: 100,
@@ -45,10 +47,37 @@ export default class Login extends Component {
         };
     }
 
+
+
     componentWillMount() {
       Orientation.lockToPortrait();
-      //Orientation.addOrientationListener(() => Orientation.lockToPortrait());
+      this._orientationDidChange = (orientation) => {
+        console.log("_orientationDidChange:"+orientation);
+        if (orientation === 'PORTRAIT') {
+          //console.log("_orientationDidChange:do PORTRAIT");
+          this.setState({ orientation: 'PORTRAIT' });
+        } else {
+          //console.log("_orientationDidChange:do LANDSCAPE");
+          this.setState({ orientation: 'LANDSCAPE' });
+        }
+        //this.refs.login_space.height=curSpaceH;
+        //this.refs.login_container_box.marginTop=curLoginareatop;
+         // this.refs.login_space.setState({ height: curSpaceH});
+         // this.refs.login_container_box.setState({ marginTop: curLoginareatop});
+      };
+      Orientation.addOrientationListener(this._orientationDidChange);
     }
+
+
+    componentWillUnmount() {
+      Orientation.getOrientation((err, orientation) => {
+        console.log(`componentWillUnmount Current Device Orientation: ${orientation}`);
+      });
+      // Remember to remove listener
+      Orientation.removeOrientationListener(this._orientationDidChange);
+    }
+
+
 
     login() {
 
@@ -78,14 +107,24 @@ export default class Login extends Component {
     }
 
     unlogin() {
-        alert(this.state.email);
+        //alert(this.state.email);
     }
 
     register() {
-        alert(this.state.email);
+        //alert(this.state.email);
     }
 
     layoutchanged(e) {
+      // let initOtn = Orientation.getInitialOrientation();
+      // console.log("layoutchanged:getInitialOrientation:"+initOtn);
+      let curOtn = this.state.orientation;
+      console.log("layoutchanged:curOtn:"+curOtn);
+      let curLoginareatop=0;
+      if (curOtn === 'PORTRAIT') {
+        curLoginareatop= Math.ceil(e.nativeEvent.layout.height * 0.5);
+      } else {
+        curLoginareatop= Math.ceil(e.nativeEvent.layout.height * 0);
+      }
         this.setState({
             width: Math.ceil(e.nativeEvent.layout.width),
             height: Math.ceil(e.nativeEvent.layout.height),
@@ -94,16 +133,41 @@ export default class Login extends Component {
             loginareawidth: Math.ceil(e.nativeEvent.layout.width * 0.8),
             loginareaheight: Math.ceil(e.nativeEvent.layout.height * 0.7),
             loginarealeft: Math.ceil(e.nativeEvent.layout.width * 0.1),
-            loginareatop: Math.ceil(e.nativeEvent.layout.height * 0.15),
+            loginareatop: curLoginareatop,
+            loginareabottom: Math.ceil(e.nativeEvent.layout.height * 0.15),
         });
     }
 
+    onLayoutchangedMidSpace(e) {
+      // let initOtn = Orientation.getInitialOrientation();
+      // let curSpaceH=30;
+      // if (initOtn === 'PORTRAIT') {
+      //   curSpaceH= 30;
+      // } else {
+      //   curSpaceH= 0;
+      // }
+      //   this.setState({
+      //       height: curSpaceH
+      //   });
+    }
+
     loginareaStyle() {
+      // let initOtn = Orientation.getInitialOrientation();
+      // console.log("loginareaStyle:getInitialOrientation:"+initOtn);
+      let curOtn = this.state.orientation;
+      console.log("loginareaStyle:curOtn:"+curOtn);
+      let curLoginareatop=0;
+      if (curOtn === 'PORTRAIT') {
+        curLoginareatop= 80;
+      } else {
+        curLoginareatop= 0;
+      }
+
         return {
             flex: 1,
             flexDirection: 'column',
-            marginTop: this.state.loginareatop,
-            marginBottom: this.state.loginareatop,
+            marginTop: curLoginareatop,
+            marginBottom: this.state.loginareabottom,
             marginLeft: this.state.loginarealeft,
             marginRight: this.state.loginarealeft,
             width: this.state.loginareawidth,
@@ -127,14 +191,14 @@ export default class Login extends Component {
     render() {
 
         return (
-            <ImageBackground source={require('./images/login/loginbg.jpg')} style={styles.login_background}>
+            <ImageBackground source={require('./../images/login/loginbg.jpg')} style={styles.login_background}>
                 <View>
                     <Image style={styles.login_image}
-                              source={require('./images/login/logo.png')} />
+                              source={require('./../images/login/logo.png')} />
                 </View>
-                <View style={styles.login_container} onLayout={(event) => { this.layoutchanged(event) }}>
-                    <View style={this.loginareaStyle()}>
-                        <Text style={styles.login_title}>LOGIN</Text>
+                <View  style={styles.login_container} onLayout={(event) => { this.layoutchanged(event) }}>
+                    <View ref="login_container_box" style={this.loginareaStyle()}>
+                        {/* <Text style={styles.login_title}>LOGIN</Text> */}
                         <TextInput
                             onChangeText={(email) => { this.setState({ email }) }}
                             style={styles.login_username}
@@ -167,7 +231,7 @@ export default class Login extends Component {
                             secureTextEntry={true}
                             textAlign='center'
                         />
-                        <View style={styles.login_space}></View>
+                        <View ref="login_space" style={styles.login_space_p} onLayout={(event) => { this.onLayoutchangedMidSpace(event) }}></View>
                         <View>
                             {this.renderLoader()}
                         </View>
@@ -261,14 +325,20 @@ const styles = StyleSheet.create({
           justifyContent: 'center',
           alignItems: 'center',
       },
-    login_space: {
+    login_space_p: {
         height: 30,
+    },
+    login_space_l: {
+        height: 0,
     },
     login_flex: {
         flex: 1
     },
     login_bottom: {
-        flex: 1, flexDirection: 'row', alignItems: 'flex-end', bottom: 10
+        flex: 0,
+        flexDirection: 'row',
+        alignItems: 'flex-end',
+        bottom: 10
     },
     login_unlogin: {
         marginLeft: 10,

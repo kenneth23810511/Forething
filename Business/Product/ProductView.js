@@ -99,7 +99,7 @@ export default class ProductView extends Component {
           <View style={this.internalContainerStyle()}>
             <View>
                 <Image source={{uri:localpath}} style={this.internalImageStyle()} />
-                     <Text>{ this.props.navigation.state.params.ListViewClickItemHolder.FirstName }</Text>
+                     <Text>{ this.props.navigation.state.params.ListViewClickItemHolder.UserName }</Text>
                      <Button onPress={this.upLoader.bind(this)} title='Load'></Button>
                      <Image source={this.state.avatarSource} style={styles.uploadAvatar} />
               </View>

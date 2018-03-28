@@ -5,7 +5,8 @@ class FetchBack extends React.Component {
     static currentUserId = "";
     static currentUserName = "";
     static currentSessionId = "token";
-    static currentStoreId = "";    
+    static currentStoreId = "";
+    static controllerUrl = "http://base.myfamilyshop.cn/";
 
     static promisefetch(fetch_promise, timeout) {
         var abort_fn = null;
@@ -33,7 +34,7 @@ class FetchBack extends React.Component {
      *  callback:回调函数
      * */
     static Get(target, serviceCode, inEntity, callback) {
-        var url = "http://base.myfamilyshop.cn/api/smart";
+        var url = this.controllerUrl + "api/smart";
 
         let params = { 'CurrentAllocation': '', 'CurrentUserId': this.currentUserId, 'CurrentSessionId': this.currentSessionId, 'CurrentStoreId': this.currentStoreId, 'ServiceCode': serviceCode, 'currentSendParameter': inEntity };
         if (params) {
@@ -78,7 +79,7 @@ class FetchBack extends React.Component {
      *  callback:回调函数
      * */
     static Post(target, serviceCode, inEntity, callback) {
-        var url = "http://base.myfamilyshop.cn/api/smart";
+        var url = this.controllerUrl + "api/smart";
         let params = { 'CurrentAllocation': '', 'CurrentUserId': this.currentUserId, 'CurrentSessionId': this.currentSessionId, 'CurrentStoreId': this.currentStoreId, 'ServiceCode': serviceCode, 'currentSendParameter': inEntity };
         var bodycontent = JSON.stringify(params);
         //fetch请求
@@ -109,7 +110,7 @@ class FetchBack extends React.Component {
     }
 
     static Authorize(target, inEntity, callback) {
-        var url = "http://base.myfamilyshop.cn/api/authorize";
+        var url = this.controllerUrl + "api/authorize";
         let params = {
             'CurrentAllocation': '', 'CurrentUserId': this.currentUserId, 'CurrentSessionId': this.currentSessionId, 'CurrentStoreId': this.currentStoreId,
             'AssemblyName': 'WebBusiness', 'ClassType': 'WebBusiness.SysUserPool', 'MethodName': 'VerifyLoginInHost', 'currentSendParameter': inEntity
@@ -143,7 +144,7 @@ class FetchBack extends React.Component {
     }
 
     static Verify(target, inEntity, callback) {
-        var url = "http://base.myfamilyshop.cn/api/authorize";
+        var url = this.controllerUrl + "api/authorize";
         let params = {
             'CurrentAllocation': '', 'CurrentUserId': this.currentUserId, 'CurrentSessionId': this.currentSessionId, 'CurrentStoreId': this.currentStoreId,
             'AssemblyName': 'WebBusiness', 'ClassType': 'WebBusiness.SysVerifyPool', 'MethodName': 'PushVerifyCode', 'currentSendParameter': inEntity

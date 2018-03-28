@@ -31,7 +31,7 @@ react-native run-android --variant=release
 
 npm install base-64 --save
 
-
+npm install react-native-swipeout --save 
 
 
  react-native run-android --variant=release

@@ -14,6 +14,7 @@ import {
     Image,
     View,
     RefreshControl,
+    TouchableOpacity,
     TouchableHighlight
 } from 'react-native';
 import Constansts from './../../utils/Constants.js';
@@ -21,21 +22,26 @@ import Common from './../../utils/Common';
 import FetchBack from './../../utils/FetchBack';
 import RNFS from 'react-native-fs';
 import { StackNavigator } from 'react-navigation';
-
+import Swipeout from 'react-native-swipeout';
+import globalcss from './../../styles/globalcss.js';
+import buttoncss from './../../styles/buttoncss.js';
+import searchcss from './../../styles/searchcss.js';
 
 export default class ShopUserList extends Component {
     constructor(props) {
         super(props);
-        //const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+
         this.state = {
             loading: false,
             seed: 1,
             refreshing: false,
             currentModifyID: [],
+            keyword: '',
+            message: '',
             resultCurrentPageIndex: 1,
-            resultDefaultDataRows: 2,
-            dataSource: [],//ds.cloneWithRows(['row 1', 'row 2']),
-            dataRecords: [],
+            resultDefaultDataRows: 16,
+            dataSource: [],
+            flatListReady: false,
             width: 100,
             height: 101,
             x: 10,
@@ -43,7 +49,7 @@ export default class ShopUserList extends Component {
             documentPath: RNFS.DocumentDirectoryPath + '/',
         };
 
-        this.QueryResult(true, false);
+        this.QueryResult(this.state.keyword, true, false);
     }
     layoutchanged(e) {
         this.setState({
@@ -54,22 +60,101 @@ export default class ShopUserList extends Component {
         });
     }
 
-    static navigationOptions = {
-        title: 'Product',
-    };
+    static navigationOptions = ({ navigation }) => {
+        const { params = {} } = navigation.state
 
-    linkTo(rowData) {
-        this.setState({ error: '', loading: true });
-        this.props.navigation.navigate('ProductView', { ListViewClickItemHolder: rowData });
-        this.setState({ error: '', loading: false });
+        return {
+            title: '测试',
+            header: (
+                <View style={globalcss.headerStyle}>
+                    <TouchableOpacity style={buttoncss.TransparentButtonStyle} activeOpacity={0.5} onPress={() => navigation.goBack()}>
+                        <Image
+                            source={require('./../../images/Toolbar/back.png')}
+                            style={buttoncss.ImageIconStyle}
+                        />
+                    </TouchableOpacity>
+                    <View style={searchcss.SearchBoxStyle}>
+                        <TextInput onChangeText={(keyword) => { params.handleSearchKey(keyword) }}
+                            style={searchcss.inputStyle}
+                            placeholder='查询条件'
+                            numberOfLines={1}
+                            underlineColorAndroid={'transparent'}
+                            textAlign='left'
+                        />
+                        <View style={searchcss.SeparatorLine} />
+
+                        <TouchableOpacity activeOpacity={0.5} onPress={() => params.handleSearch()}>
+                            <Image
+                                source={require('./../../images/Toolbar/search.png')}
+                                style={buttoncss.ImageIconStyle}
+                            />
+                        </TouchableOpacity>
+                    </View>
+                    <TouchableOpacity style={buttoncss.SeparatorButtonStyle} activeOpacity={0.5} onPress={() => params.handleNew()}>
+                        <Image
+                            source={require('./../../images/Toolbar/new.png')}
+                            style={buttoncss.ImageIconStyle}
+                        />
+                    </TouchableOpacity>
+                </View>
+            ),
+        };
     }
 
-    QueryResult(refreshCondition, forcepager) {
+    componentDidMount() {
+        this.props.navigation.setParams({ handleSearch: this.searchHandler, handleSearchKey: this.searchHandlerKey, handleNew: this.newHandler })
+    }
+
+    searchHandlerKey = (keyword) => {
+        this.setState(
+            {
+                keyword: keyword
+            },
+            () => {
+                this.setState({ message: 'keyword:' + this.state.keyword });
+            }
+        );
+    }
+
+    searchHandler = () => {
+        this.handleRefresh();
+    }
+
+    newHandler = () => {
+        this.handleEdit();
+    }
+
+    handleEdit2 = (item) => {
+        this.setState(
+            {
+                loading: true
+            },
+            () => {
+                //this.props.navigation.navigate('ShopUserEdit', { ListItemSender: item });
+                this.setState({ loading: false });
+            }
+        );
+    };
+    handleEdit = () => {
+        this.setState(
+            {
+                resultCurrentPageIndex: 1,
+                seed: this.state.seed + 1,
+                refreshing: true
+            },
+            () => {
+                this.setState({ message: 'handleRefresh' + this.state.resultCurrentPageIndex });
+                this.props.navigation.navigate('ShopUserEdit', { ListItemSender: null });
+            }
+        );
+    };
+
+    QueryResult(keyword, refreshCondition, forcepager) {
         //this.setState({ pageisloading: true, currentModifyID :[] });   
 
         if (refreshCondition) {
-            var keyword1 = "";
-            var keyword2 = ""
+            var keyword1 = keyword;
+            var keyword2 = "";
 
             var dateFrom = "";
             var dateTo = "";
@@ -93,29 +178,9 @@ export default class ShopUserList extends Component {
         FetchBack.Post(this, Constansts.ShopUserLoadResults, queryString, function (target, set) {
             if (set.ErrorCode == Constansts.Success) {
                 var returnObj = JSON.parse(set.ReturnObj);
-                //let ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
-
-                var dataRecords = target.state.dataRecords;
-                /*
-                 returnObj.rows.forEach(p =>{
-                           var filename = p.Icon.replace(/^.*[\\\/]/, '');
-                           var localpath =  target.state.documentPath + filename;
-                                        RNFS.downloadFile({
-                                            fromUrl: p.Icon,
-                                            toFile: localpath,
-                                          }).promise.then((r) => {
-                                           p.Icon = localpath;
-                                          }).catch(err => {
-                                                console.log("downloadFile error: ", err)
-                                            });
-                                          }
-                                    );*/
-
-                returnObj.rows.forEach(p => { dataRecords.push(p); });
 
                 target.setState({
-                    dataSource: dataRecords,
-                    dataRecords: dataRecords,
+                    dataSource: target.state.resultCurrentPageIndex === 1 ? returnObj.rows : [...target.state.dataSource, ...returnObj.rows],
                     loading: false,
                     refreshing: false
                 });
@@ -127,15 +192,37 @@ export default class ShopUserList extends Component {
     }
 
 
-    _renderItem = ({ item }) => (
-        <View style={styles.itemStyle}>
-            <Image source={{ uri: 'http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLQWsRVibEribE97ymIXeVY4kolV0ibtvdQ18micZN7ibFEhZOMOkOHDiavHFpNVTv9A4UchAjMsmGKWGUw/132' }} style={styles.imageStyle} />
-            <View style={styles.subItemStyle}>
-                <Text style={{ marginTop: 5, fontSize: 17 }}>{item.UserCode}</Text>
-                <Text style={{ marginBottom: 5, fontSize: 13, color: 'green' }} onPress={this.linkTo.bind(this, item)}>{item.UserName}</Text>
-            </View>
-        </View>
-    );
+    _renderItem = ({ item }) => {
+        let swipeBtns = [
+            {
+                text: 'Delete',
+                backgroundColor: 'red',
+                underlayColor: 'rgba(0, 0, 0, 1, 0.6)',
+                onPress: () => { alert(item.UserName) }
+            },
+            {
+                text: 'Edit',
+                backgroundColor: 'blue',
+                underlayColor: 'rgba(0, 0, 0, 1, 0.6)',
+                onPress: () => { this.handleEdit(item) }
+            }
+        ];
+        return (
+            <Swipeout right={swipeBtns}
+                autoClose={true}
+                sensitivity={10}
+                backgroundColor='transparent'>
+                <TouchableHighlight underlayColor='blue'>
+                    <View style={globalcss.flatitemStyle}>
+                        <Image source={{ uri: 'http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLQWsRVibEribE97ymIXeVY4kolV0ibtvdQ18micZN7ibFEhZOMOkOHDiavHFpNVTv9A4UchAjMsmGKWGUw/132' }} style={globalcss.flatimageStyle} />
+                        <View style={globalcss.flatsubItemStyle}>
+                            <Text style={{ marginTop: 5, fontSize: 17 }}>{item.UserCode}</Text>
+                            <Text style={{ marginBottom: 5, fontSize: 13, color: 'green' }}>{item.UserName}</Text>
+                        </View>
+                    </View>
+                </TouchableHighlight>
+            </Swipeout>);
+    }
     emptyComponent = () => {
         return <View style={{
             height: '100%',
@@ -148,101 +235,86 @@ export default class ShopUserList extends Component {
         </View>
     }
 
-     handleRefresh = () => {
+    handleRefresh = () => {
         this.setState(
-          {
-            page: 1,
-            seed: this.state.seed + 1,
-            refreshing: true
-          },
-          () => {
-            this.QueryResult(true, false);
-          }
+            {
+                resultCurrentPageIndex: 1,
+                seed: this.state.seed + 1,
+                refreshing: true
+            },
+            () => {
+                this.setState({ message: 'handleRefresh' + this.state.resultCurrentPageIndex });
+                this.QueryResult(this.state.keyword, true, false);
+            }
         );
-      };
+    };
+
+    onScrolled = () => {
+        this.setState({ flatListReady: true });
+    }
 
     onEndReached = () => {
-    this.setState({ resultCurrentPageIndex: this.state.resultCurrentPageIndex + 1 });
-    this.QueryResult(true, false);
-    this.setState({ resultDefaultDataRows: 4 });
-  }
+        if (this.state.flatListReady) {
+            this.setState(
+                {
+                    resultCurrentPageIndex: this.state.resultCurrentPageIndex + 1,
+                    message: 'onEndReached' + this.state.resultCurrentPageIndex
+                },
+                () => {
+                    this.QueryResult(this.state.keyword, true, false);
+                }
+            );
+        }
+    }
 
     _keyExtractor = (item, index) => item.RecId;
 
     renderHeader = () => {
-        return <TextInput placeholder="Type Here..."  />;
-      };
+        return <View />;
+    };
 
-      renderFooter = () => {
+    renderFooter = () => {
         if (!this.state.loading) return null;
 
         return (
-          <View
-            style={{
-              paddingVertical: 20,
-              borderTopWidth: 1,
-              borderColor: "#CED0CE",
-              height:20
-            }}
-          >
-            <ActivityIndicator animating size="large" />
-          </View>
+            <View style={globalcss.flatlistboxFooter}>
+                <ActivityIndicator animating size="large" />
+            </View>
         );
-      };
+    };
 
     render() {
         return (
-            <View containerStyle={{ borderTopWidth: 0, borderBottomWidth: 0 }}>
-                <FlatList style={styles.styleproducts}
-                    data={this.state.dataSource}
-                    keyExtractor={this._keyExtractor}
-                    ItemSeparatorComponent={() => <View style={{
-                        height: 1,
-                        backgroundColor: '#D6D6D6'
-                    }} />}
-                    renderItem={this._renderItem}
-                    ListEmptyComponent={this.emptyComponent}
-                    ListHeaderComponent={this.renderHeader}
-                    ListFooterComponent={this.renderFooter}
-                    onRefresh={this.handleRefresh}
-                    refreshing={this.state.refreshing}
-                    onEndReached={this.onEndReached}
-                    onEndReachedThreshold={0.5} />
+            <View style={globalcss.body}>
+                <View style={{ height: 40, width: 300 }}>
+                    <TextInput
+                        style={searchcss.inputStyle}
+                        numberOfLines={1}
+                        underlineColorAndroid={'transparent'}
+                        textAlign='left'
+                        value={this.state.message}
+                    />
+                </View>
+                <View style={globalcss.container} onLayout={(event) => { this.layoutchanged(event) }}>
+                    <View style={globalcss.columnSpace}></View>
+                    <View style={globalcss.internalView}>
+                        <FlatList style={globalcss.flatlistbox}
+                            data={this.state.dataSource}
+                            keyExtractor={this._keyExtractor}
+                            ItemSeparatorComponent={() => <View style={globalcss.flatlistboxSeparator} />}
+                            renderItem={this._renderItem}
+                            ListEmptyComponent={this.emptyComponent}
+                            ListHeaderComponent={this.renderHeader}
+                            ListFooterComponent={this.renderFooter}
+                            onScroll={this.onScrolled}
+                            onRefresh={this.handleRefresh}
+                            refreshing={this.state.refreshing}
+                            onEndReached={this.onEndReached}
+                            onEndReachedThreshold={0.5} />
+                    </View>
+                    <View style={globalcss.columnSpace}></View>
+                </View>
             </View>
         );
     }
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#DDDDDD',
-        width: '100%',
-        height: '100%',
-        margin: 3
-    },
-    styleproducts: {
-        width: '90%',
-    },
-    itemStyle: {
-        // 主轴方向
-        flexDirection: 'row',
-        // 下边框
-        borderBottomWidth: 1,
-        borderBottomColor: 'gray'
-    },
-    imageStyle: {
-        // 尺寸
-        width: 60,
-        height: 60,
-        // 边距
-        marginLeft: 10,
-        margin: 10
-    },
-    subItemStyle: {
-        // 对齐方式
-        justifyContent: 'space-around'
-    }
-});

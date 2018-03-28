@@ -26,6 +26,8 @@ import Loader from './Loader';
 import FetchBack from './utils/FetchBack';
 import md5 from "react-native-md5";
 import base64 from "base-64";
+import logincss from './styles/logincss.js';
+
 
 export default class Login extends Component {
 
@@ -59,7 +61,7 @@ export default class Login extends Component {
 
             }
             else {
-                this.state.verifycode = '';
+                target.setState({ verifycode: '' });
             }
         });
 
@@ -139,7 +141,7 @@ export default class Login extends Component {
         if (this.state.loading) {
             return <Loader size="large" />;
         } else {
-            return <TouchableOpacity style={styles.login_button} underlayColor='#fff' onPress={this.login.bind(this)}><Text style={{ color: '#fff' }}>登录</Text></TouchableOpacity>;
+            return <TouchableOpacity style={logincss.login_button} underlayColor='#fff' onPress={this.login.bind(this)}><Text style={{ color: '#fff' }}>登录</Text></TouchableOpacity>;
         }
     }
 
@@ -151,17 +153,17 @@ export default class Login extends Component {
     render() {
 
         return (
-            <ImageBackground source={require('./images/login/loginbg.jpg')} style={styles.login_background}>
+            <ImageBackground source={require('./images/login/loginbg.jpg')} style={logincss.login_background}>
                 <View>
-                    <Image style={styles.login_image}
+                    <Image style={logincss.login_image}
                         source={require('./images/login/logo.png')} />
                 </View>
-                <View style={styles.login_container} onLayout={(event) => { this.layoutchanged(event) }}>
+                <View style={logincss.login_container} onLayout={(event) => { this.layoutchanged(event) }}>
                     <View style={this.loginareaStyle()}>
-                        <Text style={styles.login_title}>登录</Text>
+                        <Text style={logincss.login_title}>登录</Text>
                         <TextInput
                             onChangeText={(usercode) => { this.setState({ usercode }) }}
-                            style={styles.login_usercode}
+                            style={logincss.login_usercode}
                             placeholder='用户账号或手机号码'
                             numberOfLines={1}
                             autoFocus={true}
@@ -173,7 +175,7 @@ export default class Login extends Component {
                         />
                         <TextInput
                             onChangeText={(password) => { this.setState({ password }) }}
-                            style={styles.login_password}
+                            style={logincss.login_password}
                             placeholder='登录密码'
                             numberOfLines={1}
                             underlineColorAndroid={'transparent'}
@@ -184,27 +186,27 @@ export default class Login extends Component {
                             style={{ height: 3, backgroundColor: 'transparent' }}
                         />
 
-                        <View style={styles.login_space}></View>
+                        <View style={logincss.login_space}></View>
                         <View>
                             {this.renderLoader()}
                         </View>
                         <View>
                             <TouchableOpacity
-                                style={styles.login_close}
+                                style={logincss.login_close}
                                 underlayColor='#fff'>
                                 <Text style={{ color: '#fff' }}>关闭</Text>
                             </TouchableOpacity>
                         </View>
-                        <View style={styles.login_flex}></View>
+                        <View style={logincss.login_flex}></View>
 
-                        <View style={styles.login_bottom}>
-                            <TouchableHighlight onPress={this.unlogin.bind(this)} style={styles.login_unlogin}>
-                                <Text style={styles.login_unlogintext}>
+                        <View style={logincss.login_bottom}>
+                            <TouchableHighlight onPress={this.unlogin.bind(this)} style={logincss.login_unlogin}>
+                                <Text style={logincss.login_unlogintext}>
                                     无法登录?
                                 </Text>
                             </TouchableHighlight>
-                            <TouchableHighlight onPress={this.register.bind(this)} style={styles.login_register}>
-                                <Text style={styles.login_registertext}>
+                            <TouchableHighlight onPress={this.register.bind(this)} style={logincss.login_register}>
+                                <Text style={logincss.login_registertext}>
                                     新用户
                                 </Text>
                             </TouchableHighlight>
@@ -215,96 +217,3 @@ export default class Login extends Component {
         );
     }
 }
-
-const styles = StyleSheet.create({
-    login_background: {
-        flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        width: '100%',
-    },
-    login_container: {
-        flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        width: '100%',
-        backgroundColor: 'transparent',
-    },
-    login_image: {
-        borderRadius: 3,
-        height: 40,
-        width: 94,
-        marginTop: 40,
-        alignSelf: 'center',
-    },
-    login_title: {
-        borderRadius: 5,
-        height: 40,
-        marginTop: 40,
-        alignSelf: 'center',
-        color: 'white',
-        fontSize: 22,
-    },
-    login_usercode: {
-        backgroundColor: '#fff',
-        marginTop: 10,
-        height: 40,
-    },
-    login_password: {
-        backgroundColor: '#fff',
-        height: 40,
-    },
-    login_button: {
-        marginTop: 15,
-        marginLeft: 2,
-        marginRight: 2,
-        backgroundColor: '#D2B48C',
-        height: 35,
-        borderRadius: 2,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    login_close: {
-        marginTop: 3,
-        marginLeft: 2,
-        marginRight: 2,
-        backgroundColor: 'transparent',
-        height: 35,
-        borderRadius: 2,
-        borderWidth: 1,
-        borderColor: '#D2B48C',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    login_space: {
-        height: 30,
-    },
-    login_flex: {
-        flex: 1
-    },
-    login_bottom: {
-        flex: 1, flexDirection: 'row', alignItems: 'flex-end', bottom: 10
-    },
-    login_unlogin: {
-        marginLeft: 10,
-    },
-    login_register: {
-        marginRight: 10,
-        alignItems: 'flex-end',
-        flex: 1,
-        flexDirection: 'row',
-    },
-    login_unlogintext: {
-        fontSize: 12,
-        color: '#fff',
-    },
-    login_registertext: {
-        flex: 1,
-        flexDirection: 'row',
-        fontSize: 12,
-        color: '#fff',
-        textAlign: 'right',
-    },
-});

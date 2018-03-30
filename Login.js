@@ -65,7 +65,7 @@ export default class Login extends Component {
             }
         });
 
-        setTimeout(this.loginto, 3000, this);       
+        //setTimeout(this.loginto, 3000, this);       
     }
 
     login() {

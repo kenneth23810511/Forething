@@ -41,9 +41,33 @@ module.exports = StyleSheet.create({
         width: '100%',
         height: 40,
         marginTop: Platform.OS == "ios" ? 20 : 0,
+        justifyContent: 'center',
+        borderStyle: 'solid',        
+        borderBottomWidth: 1,
+        borderBottomColor: colors.borderDefault,
+    },
+    headerFlexStyle: {
+        flex: 3,
+        flexDirection: 'row',
+        alignItems: 'center',        
+    },   
+    commonTitleLabel: {
+        backgroundColor: colors.transparent,
+        marginTop: 5,
+        height: 40,
+        lineHeight: 36,
+        justifyContent: 'center',
+        alignItems: 'center',
+        textAlign: 'center',
+    },
+    rowSpace:{
+        height: 3,
     },
     columnSpace:{
         width: 3,
+    },
+    labelView: {
+        
     },
     internalView: {
         flex: 3,

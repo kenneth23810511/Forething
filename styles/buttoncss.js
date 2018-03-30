@@ -16,9 +16,9 @@ module.exports = StyleSheet.create({
         backgroundColor: colors.transparent,
         borderWidth: .5,
         borderColor: colors.transparent,
-        height: 36,
+        height: 32,
         borderRadius: 3,
-        margin: 2,
+        margin: 4,
     },
     SeparatorButtonStyle: {
         flexDirection: 'row',
@@ -26,9 +26,9 @@ module.exports = StyleSheet.create({
         backgroundColor: colors.buttonDefault,
         borderWidth: .5,
         borderColor: colors.buttonBorderDefault,
-        height: 36,
+        height: 32,
         borderRadius: 3,
-        margin: 2,
+        margin: 4,
     },
     ImageIconStyle: {
         margin: 2,

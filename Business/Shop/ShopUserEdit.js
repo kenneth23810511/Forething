@@ -91,11 +91,11 @@ export default class ShopUserEdit extends Component {
                         />
                     </TouchableOpacity>
                     <View style={{ flex: 1 }}>
-
+                        <Text style={globalcss.commonTitleLabel}>用户编辑</Text>
                     </View>
-                    <TouchableOpacity style={buttoncss.SeparatorButtonStyle} activeOpacity={0.5} onPress={() => params.handleNew()}>
+                    <TouchableOpacity style={buttoncss.TransparentButtonStyle} activeOpacity={0.5} onPress={() => params.handleSave()}>
                         <Image
-                            source={require('./../../images/Toolbar/new.png')}
+                            source={require('./../../images/Toolbar/save.png')}
                             style={buttoncss.ImageIconStyle}
                         />
                     </TouchableOpacity>
@@ -104,6 +104,13 @@ export default class ShopUserEdit extends Component {
         };
     }
 
+    componentDidMount() {
+        this.props.navigation.setParams({  handleSave: this.savewHandler })
+    }
+
+    savewHandler = () => {
+        this.props.navigation.navigate('Demo2');
+    }
 
     updateData(data) {
         let source = { uri: 'data:image/jpeg;base64,' + data };
@@ -120,19 +127,13 @@ export default class ShopUserEdit extends Component {
         if (this.props.navigation.state.params.ListItemSender == null) {
             return (
                 <View style={globalcss.body}>
-                    <View style={{ height: 40, width: 300 }}>
-                        <TextInput
-                            style={inputcss.commonInput}
-                            numberOfLines={1}
-                            underlineColorAndroid={'transparent'}
-                            textAlign='left'
-                            value={this.state.message}
-                        />
+                    <View style={{ height: 20, width: 300 }}>
+                        
                     </View>
                     <View style={globalcss.container} onLayout={(event) => { this.layoutchanged(event) }}>
                         <View style={globalcss.columnSpace}></View>
                         <View style={globalcss.internalView}>
-                            <View><Text style={inputcss.commonInputLabel}>用户名</Text></View>
+                            <View style={globalcss.labelView}><Text style={inputcss.commonInputLabel}>用户名</Text></View>
                             <View>
                                 <TextInput
                                     onChangeText={(usercode) => { this.setState({ usercode }) }}
@@ -144,7 +145,7 @@ export default class ShopUserEdit extends Component {
                                     textAlign='left'
                                 />
                             </View>
-                            <View><Text style={inputcss.commonInputLabel}>密码</Text></View>
+                            <View style={globalcss.labelView}><Text style={inputcss.commonInputLabel}>密码</Text></View>
                             <View>
                                 <TextInput
                                     onChangeText={(password) => { this.setState({ password }) }}

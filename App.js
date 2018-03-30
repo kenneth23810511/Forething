@@ -30,6 +30,7 @@ export const SimpleApp = StackNavigator({
     ProductList: { screen: ProductList },
     ProductView: { screen: ProductView },
     UploadView: { screen: UploadView },
+    Demo2: { screen: Demo2 },
 });
 
 export default class App extends Component {

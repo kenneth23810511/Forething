@@ -7,6 +7,7 @@ class FetchBack extends React.Component {
     static currentSessionId = "token";
     static currentStoreId = "";
     static controllerUrl = "http://base.myfamilyshop.cn/";
+    //static controllerUrl = "http://10.72.1.66/";
 
     static promisefetch(fetch_promise, timeout) {
         var abort_fn = null;

@@ -26,6 +26,7 @@ import Swipeout from 'react-native-swipeout';
 import globalcss from './../../styles/globalcss.js';
 import buttoncss from './../../styles/buttoncss.js';
 import searchcss from './../../styles/searchcss.js';
+import SearchBar from './../../Component/SearchBar.js';
 
 export default class ShopUserList extends Component {
     constructor(props) {
@@ -73,24 +74,10 @@ export default class ShopUserList extends Component {
                             style={buttoncss.ImageIconStyle}
                         />
                     </TouchableOpacity>
-                    <View style={searchcss.SearchBoxStyle}>
-                        <TextInput onChangeText={(keyword) => { params.handleSearchKey(keyword) }}
-                            style={searchcss.inputStyle}
-                            placeholder='查询条件'
-                            numberOfLines={1}
-                            underlineColorAndroid={'transparent'}
-                            textAlign='left'
-                        />
-                        <View style={searchcss.SeparatorLine} />
-
-                        <TouchableOpacity activeOpacity={0.5} onPress={() => params.handleSearch()}>
-                            <Image
-                                source={require('./../../images/Toolbar/search.png')}
-                                style={buttoncss.ImageIconStyle}
-                            />
-                        </TouchableOpacity>
+                    <View style={globalcss.headerFlexStyle}>
+                        <SearchBar searchHandle={(keyword) => params.handleSearch(keyword)} />
                     </View>
-                    <TouchableOpacity style={buttoncss.SeparatorButtonStyle} activeOpacity={0.5} onPress={() => params.handleNew()}>
+                    <TouchableOpacity style={buttoncss.TransparentButtonStyle} activeOpacity={0.5} onPress={() => params.handleNew()}>
                         <Image
                             source={require('./../../images/Toolbar/new.png')}
                             style={buttoncss.ImageIconStyle}
@@ -102,22 +89,18 @@ export default class ShopUserList extends Component {
     }
 
     componentDidMount() {
-        this.props.navigation.setParams({ handleSearch: this.searchHandler, handleSearchKey: this.searchHandlerKey, handleNew: this.newHandler })
+        this.props.navigation.setParams({ handleSearch: this.searchHandler, handleNew: this.newHandler })
     }
 
-    searchHandlerKey = (keyword) => {
+    searchHandler = (keyword) => {
         this.setState(
             {
                 keyword: keyword
             },
             () => {
-                this.setState({ message: 'keyword:' + this.state.keyword });
+                this.handleRefresh();
             }
         );
-    }
-
-    searchHandler = () => {
-        this.handleRefresh();
     }
 
     newHandler = () => {
@@ -286,7 +269,7 @@ export default class ShopUserList extends Component {
     render() {
         return (
             <View style={globalcss.body}>
-                <View style={{ height: 40, width: 300 }}>
+                <View style={{ height: 40, width: 200, position: 'absolute', top: 100, left: 10, zIndex: 2, opacity: 0.5 }}>
                     <TextInput
                         style={searchcss.inputStyle}
                         numberOfLines={1}

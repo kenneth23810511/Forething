@@ -10,7 +10,7 @@ import { colors, fonts, padding, dimensions } from './basecss.js'
 
 
 module.exports = StyleSheet.create({
-    TransparentButtonStyle: {
+    transparentButtonStyle: {
         flexDirection: 'row',
         alignItems: 'center',
         backgroundColor: colors.transparent,
@@ -20,7 +20,7 @@ module.exports = StyleSheet.create({
         borderRadius: 3,
         margin: 4,
     },
-    SeparatorButtonStyle: {
+    separatorButtonStyle: {
         flexDirection: 'row',
         alignItems: 'center',
         backgroundColor: colors.buttonDefault,
@@ -30,23 +30,24 @@ module.exports = StyleSheet.create({
         borderRadius: 3,
         margin: 4,
     },
-    ImageIconStyle: {
+    imageIconStyle: {
         margin: 2,
         height: 30,
         width: 30,
         resizeMode: 'stretch',
     },
-    TextStyle: {
+    textStyle: {
         color: colors.buttonText,
         margin: 2,
         fontSize: fonts.sm,
         fontFamily: fonts.primary,
         fontWeight: 'normal'
     },
-
-    SeparatorLine: {
-        backgroundColor: colors.buttonSeparatorLine,
+    separatorLine: {
+        backgroundColor: colors.buttonseparatorLine,
         width: 1,
-        height: '100%'
+        borderWidth: 0,        
+        zIndex: -1,
+        elevation: -1,
     }
 });

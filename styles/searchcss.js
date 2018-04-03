@@ -10,12 +10,12 @@ import {colors, fonts, padding, dimensions} from './basecss.js'
 
 
 module.exports = StyleSheet.create({   
-    SearchBoxStyle: {
+    searchBoxStyle: {
         flex: 3,
         flexDirection: 'row',
         alignItems: 'center',
         backgroundColor: colors.buttonDefault,
-        borderWidth: .5,
+        borderWidth: 1,
         borderColor: colors.buttonBorderDefault,
         height: 32,
         borderRadius: 3,
@@ -29,6 +29,7 @@ module.exports = StyleSheet.create({
         borderBottomRightRadius: 0,
         borderTopLeftRadius: 3,
         borderTopRightRadius: 0,
+        borderWidth: 0,
         height: 30,
         justifyContent: 'center', 
         fontSize: 20,
@@ -38,16 +39,17 @@ module.exports = StyleSheet.create({
         zIndex: -1,
         elevation: -1,
     },
-    ImageIconStyle: {       
+    imageIconStyle: {       
         margin: 2,
-        height: 30,
-        width: 30,
+        height: 28,
+        width: 28,
         resizeMode: 'stretch',
     },   
-
-    SeparatorLine: {
-        backgroundColor: colors.buttonSeparatorLine,
+    separatorLine: {
+        backgroundColor: colors.buttonseparatorLine,
         width: 1,
-        height: '100%'
+        borderWidth: 0,        
+        zIndex: -1,
+        elevation: -1,
     }
 });

@@ -84,19 +84,19 @@ export default class ShopUserEdit extends Component {
             title: 'ShopUserEdit',
             header: (
                 <View style={globalcss.headerStyle}>
-                    <TouchableOpacity style={buttoncss.TransparentButtonStyle} activeOpacity={0.5} onPress={() => navigation.goBack()}>
+                    <TouchableOpacity style={buttoncss.transparentButtonStyle} activeOpacity={0.5} onPress={() => navigation.goBack()}>
                         <Image
                             source={require('./../../images/Toolbar/back.png')}
-                            style={buttoncss.ImageIconStyle}
+                            style={buttoncss.imageIconStyle}
                         />
                     </TouchableOpacity>
                     <View style={{ flex: 1 }}>
                         <Text style={globalcss.commonTitleLabel}>用户编辑</Text>
                     </View>
-                    <TouchableOpacity style={buttoncss.TransparentButtonStyle} activeOpacity={0.5} onPress={() => params.handleSave()}>
+                    <TouchableOpacity style={buttoncss.transparentButtonStyle} activeOpacity={0.5} onPress={() => params.handleSave()}>
                         <Image
                             source={require('./../../images/Toolbar/save.png')}
-                            style={buttoncss.ImageIconStyle}
+                            style={buttoncss.imageIconStyle}
                         />
                     </TouchableOpacity>
                 </View>

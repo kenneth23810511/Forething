@@ -81,7 +81,7 @@ module.exports = StyleSheet.create({
     flatlistboxSeparator: {
         width: '100%',        
         height: 5,
-        backgroundColor: colors.buttonSeparatorLine
+        backgroundColor: colors.buttonseparatorLine
     },
     flatlistboxFooter: {
         paddingVertical: 20,

@@ -9,6 +9,7 @@ import {
 import globalcss from './../styles/globalcss.js';
 import buttoncss from './../styles/buttoncss.js';
 import searchcss from './../styles/searchcss.js';
+import TextBox from './TextBox.js';
 
 class SearchBar extends Component {
 
@@ -16,7 +17,7 @@ class SearchBar extends Component {
         super(props);
 
         this.state = {
-            keyword: '',
+            textValue: '',
         };
     }
 
@@ -27,19 +28,19 @@ class SearchBar extends Component {
 
     render() {
         return (
-            <View style={searchcss.SearchBoxStyle}>
-                <TextInput onChangeText={(keyword) => this.setState({ keyword })}
+            <View style={searchcss.searchBoxStyle}>
+                <TextBox onChangeText={(textValue) => this.setState({ textValue })}
+                    value={this.state.textValue}
                     style={searchcss.inputStyle}
                     placeholder='查询条件'
-                    numberOfLines={1}
+                    numberOfLines={1}                    
                     underlineColorAndroid={'transparent'}
                     textAlign='left' />
-                <View style={searchcss.SeparatorLine} />
-
-                <TouchableOpacity activeOpacity={0.5} onPress={() => this.props.searchHandle(this.state.keyword)}>
+                <View style={searchcss.separatorLine} />
+                <TouchableOpacity onPress={() => this.props.searchHandle(this.state.textValue)}>
                     <Image
                         source={require('./../images/Toolbar/search.png')}
-                        style={buttoncss.ImageIconStyle}
+                        style={searchcss.imageIconStyle}
                     />
                 </TouchableOpacity>
             </View>

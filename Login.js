@@ -166,7 +166,7 @@ export default class Login extends Component {
                             style={logincss.login_usercode}
                             placeholder='用户账号或手机号码'
                             numberOfLines={1}
-                            autoFocus={true}
+                            autoFocus={false}
                             underlineColorAndroid={'transparent'}
                             textAlign='center'
                         />

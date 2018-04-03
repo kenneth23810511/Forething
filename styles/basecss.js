@@ -14,7 +14,7 @@ export const colors  = {
   tertiary: '#9FB6CD',
   buttonDefault: '#7CCD7C',
   buttonBorderDefault: '#53868B',
-  buttonSeparatorLine: '#fff',
+  buttonseparatorLine: '#fff',
   buttonText: '#fff',
   borderDefault: '#CED0CE',
   inputDefault: '#fff'

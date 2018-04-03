@@ -68,19 +68,19 @@ export default class ShopUserList extends Component {
             title: '测试',
             header: (
                 <View style={globalcss.headerStyle}>
-                    <TouchableOpacity style={buttoncss.TransparentButtonStyle} activeOpacity={0.5} onPress={() => navigation.goBack()}>
+                    <TouchableOpacity style={buttoncss.transparentButtonStyle} activeOpacity={0.5} onPress={() => navigation.goBack()}>
                         <Image
                             source={require('./../../images/Toolbar/back.png')}
-                            style={buttoncss.ImageIconStyle}
+                            style={buttoncss.imageIconStyle}
                         />
                     </TouchableOpacity>
                     <View style={globalcss.headerFlexStyle}>
                         <SearchBar searchHandle={(keyword) => params.handleSearch(keyword)} />
                     </View>
-                    <TouchableOpacity style={buttoncss.TransparentButtonStyle} activeOpacity={0.5} onPress={() => params.handleNew()}>
+                    <TouchableOpacity style={buttoncss.transparentButtonStyle} activeOpacity={0.5} onPress={() => params.handleNew()}>
                         <Image
                             source={require('./../../images/Toolbar/new.png')}
-                            style={buttoncss.ImageIconStyle}
+                            style={buttoncss.imageIconStyle}
                         />
                     </TouchableOpacity>
                 </View>

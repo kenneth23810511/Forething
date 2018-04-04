@@ -14,10 +14,10 @@ export const colors  = {
   tertiary: '#9FB6CD',
   buttonDefault: '#7CCD7C',
   buttonBorderDefault: '#53868B',
-  buttonseparatorLine: '#fff',
-  buttonText: '#fff',
+  buttonseparatorLine: '#FFFFFF',
+  buttonText: '#FFFFFF',
   borderDefault: '#CED0CE',
-  inputDefault: '#fff'
+  inputDefault: '#FFFFFF'
 }
 
 export const padding = {

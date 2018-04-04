@@ -33,16 +33,18 @@ class SearchBar extends Component {
                     value={this.state.textValue}
                     style={searchcss.inputStyle}
                     placeholder='查询条件'
-                    numberOfLines={1}                    
+                    numberOfLines={1}
                     underlineColorAndroid={'transparent'}
                     textAlign='left' />
                 <View style={searchcss.separatorLine} />
-                <TouchableOpacity onPress={() => this.props.searchHandle(this.state.textValue)}>
-                    <Image
-                        source={require('./../images/Toolbar/search.png')}
-                        style={searchcss.imageIconStyle}
-                    />
-                </TouchableOpacity>
+                <View style={searchcss.iconSpaceStyle}>
+                    <TouchableOpacity onPress={() => this.props.searchHandle(this.state.textValue)}>
+                        <Image
+                            source={require('./../images/Toolbar/search.png')}
+                            style={searchcss.imageIconStyle}
+                        />
+                    </TouchableOpacity>
+                </View>
             </View>
         );
     }
